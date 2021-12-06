@@ -1,26 +1,30 @@
 import React from "react";
 import { Input, Button, Grid } from "../elements/index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "../redux/modules/post";
 
 const PostWrite = (props) => {
   const [content, setContent] = React.useState("");
   const [url, setUrl] = React.useState("");
+  const post = { content, url };
 
   const dispatch = useDispatch();
 
   const addPost = () => {
-    dispatch(actionCreators.newPost(content, url));
+    dispatch(actionCreators.newPost(post));
   };
+
+  const data = useSelector((state) => state);
+  console.log(post);
 
   return (
     <React.Fragment>
       <Grid
-        radius
+        radius="5px"
         shadow
         flex
         width="80%"
-        margin="25vh auto"
+        margin="10vh auto"
         border="1px solid black"
         padding="50px"
         bg="#262223"
@@ -40,7 +44,12 @@ const PostWrite = (props) => {
           label="업로드 링크"
           placeholder="도움이 되는 링크를 공유해주세요!"
         ></Input>
-        <Button _onClick={addPost} padding="10px 20px">
+        <Button
+          color="#262223"
+          bg="#ddc6b6"
+          _onClick={addPost}
+          padding="10px 20px"
+        >
           작성하기
         </Button>
       </Grid>
