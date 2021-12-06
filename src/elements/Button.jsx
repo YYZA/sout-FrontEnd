@@ -21,6 +21,7 @@ Button.defaultProps = {
 }
 
 const ButtonBox = styled.button`
+  border-radius: 5px;
   margin: ${(props) => props.margin};
   width: ${(props) => props.width};
   padding: ${(props) => props.padding};
