@@ -7,9 +7,7 @@ const Main = (props) => {
         <Button>hi!</Button>
         <Input>hi!</Input>
         <Input multiLine>hi!</Input>
-        <Text color="red" fontSize="26px">
-          hi!
-        </Text>
+        <Text fontSize="26px">hi!</Text>
       </Grid>
     </>
   )

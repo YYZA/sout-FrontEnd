@@ -12,7 +12,7 @@ const Text = (props) => {
 
 Text.defaultProps = {
   fontSize: '',
-  color: false,
+  color: '',
 }
 
 const TextBox = styled.p`

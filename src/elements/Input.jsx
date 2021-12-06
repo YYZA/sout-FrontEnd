@@ -24,7 +24,11 @@ const Input = (props) => {
   )
 }
 
-Input.defaultProps = {}
+Input.defaultProps = {
+  label: '',
+  multiLine: false,
+  placeholder: '',
+}
 
 const InputBox = styled.input`
   border: 1px solid #000;
