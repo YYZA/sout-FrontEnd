@@ -1,3 +1,7 @@
 import { handleActions } from 'redux-actions'
 
-export default handleActions({})
+const initialState = {
+  list: [],
+}
+
+export default handleActions({}, initialState)

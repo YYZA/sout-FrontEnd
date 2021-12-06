@@ -1,3 +1,8 @@
 import { handleActions } from 'redux-actions'
 
-export default handleActions({})
+const initialState = {
+  is_login: false,
+  user: [],
+}
+
+export default handleActions({}, initialState)

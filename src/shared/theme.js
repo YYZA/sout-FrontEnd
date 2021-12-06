@@ -12,6 +12,7 @@ const fontSize = {
   md: '16px',
   lg: '20px',
   xl: '24px',
+  xxl: '36px',
 }
 
 const theme = {
