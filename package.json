@@ -2,6 +2,7 @@
   "name": "sout-front-end",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
@@ -9,8 +10,10 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.24.0",
     "connected-react-router": "6.8.0",
     "history": "4.10.1",
+    "http-proxy-middleware": "^2.0.1",
     "immer": "^9.0.7",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
