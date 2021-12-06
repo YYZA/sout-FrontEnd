@@ -1,16 +1,16 @@
-import { ConnectedRouter } from 'connected-react-router'
-import { Route } from 'react-router'
-import { ThemeProvider } from 'styled-components'
-import Footer from '../components/Footer'
-import Header from '../components/Header'
-import Main from '../pages/Main'
-import PostWrite from '../pages/PostWrite'
-import SignIn from '../pages/SignIn'
-import SignUp from '../pages/SignUp'
-import UserProfile from '../pages/UserProfile'
-import { history } from '../redux/configureStore'
-import GlobalStyles from './GlobalStyles'
-import theme from './theme'
+import { ConnectedRouter } from "connected-react-router";
+import { Route } from "react-router";
+import { ThemeProvider } from "styled-components";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import Main from "../pages/Main";
+import PostWrite from "../pages/PostWrite";
+import SignIn from "../pages/SignIn";
+import SignUp from "../pages/SignUp";
+import UserProfile from "../pages/UserProfile";
+import { history } from "../redux/configureStore";
+import GlobalStyles from "./GlobalStyles";
+import theme from "./theme";
 
 function App() {
   return (
@@ -26,7 +26,7 @@ function App() {
       </ConnectedRouter>
       <Footer />
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;
