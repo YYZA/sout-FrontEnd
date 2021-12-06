@@ -1,6 +1,7 @@
 import React from "react";
 import { Input, Button, Grid } from "../elements/index";
 import { useDispatch, useSelector } from "react-redux";
+import { history } from "../redux/configureStore";
 import { actionCreators } from "../redux/modules/post";
 
 const PostWrite = (props) => {
@@ -12,10 +13,15 @@ const PostWrite = (props) => {
 
   const addPost = () => {
     dispatch(actionCreators.newPost(post));
+    history.push("/");
   };
 
   const data = useSelector((state) => state);
   console.log(post);
+  if (post === null) {
+    window.alert("내용을 입력해주세요!");
+    return;
+  }
 
   return (
     <React.Fragment>

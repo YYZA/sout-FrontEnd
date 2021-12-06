@@ -16,12 +16,12 @@ const Main = (props) => {
       >
         <Grid padding="16px">
           <Grid width="auto">
-            <Text bold>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <ImageCircle src={props.user_image} />
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <ImageCircle src={props.user_image} />
+              <Text bold>
                 {props.user_name} / {props.interest}
-              </div>
-            </Text>
+              </Text>
+            </div>
           </Grid>
           <hr style={{ width: "100%", margin: "5px 0px" }} />
           <Grid width="auto">
