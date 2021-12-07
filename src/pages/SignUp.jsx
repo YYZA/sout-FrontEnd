@@ -1,7 +1,6 @@
 import axios from 'axios'
-import { useEffect } from 'react'
 import styled from 'styled-components'
-import { Button, Grid, Input, Text } from '../elements'
+import { Button, Grid, Text } from '../elements'
 import { useForm } from 'react-hook-form'
 import { history } from '../redux/configureStore'
 
@@ -32,7 +31,7 @@ const SignUp = (props) => {
         interest: data.interest,
         password: data.password,
       })
-      .then((res) => console.log(res))
+      .then((res) => history.push('/signin'))
   }
 
   return (
