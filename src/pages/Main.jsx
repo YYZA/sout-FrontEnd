@@ -1,6 +1,7 @@
-import axios from 'axios'
-import { useEffect } from 'react'
-import { Button, Grid, Input, Text } from '../elements'
+import axios from "axios";
+import { useEffect } from "react";
+import { Button, Grid, Input, Text } from "../elements";
+import Post from "../components/Post";
 
 const Main = (props) => {
   // useEffect(() => {
@@ -12,13 +13,10 @@ const Main = (props) => {
   return (
     <>
       <Grid flex>
-        <Button>hi!</Button>
-        <Input>hi!</Input>
-        <Input multiLine>hi!</Input>
-        <Text fontSize="26px">hi!</Text>
+        <Post />
       </Grid>
     </>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;
