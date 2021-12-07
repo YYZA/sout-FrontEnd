@@ -1,4 +1,5 @@
 import { Search } from '@material-ui/icons'
+import _ from 'lodash'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -6,8 +7,10 @@ import styled, { keyframes } from 'styled-components'
 import { Button, Grid } from '../elements'
 import { history } from '../redux/configureStore'
 import { deleteCookie, getCookie } from '../shared/Cookie'
+import { useForm } from 'react-hook-form'
 
 const Header = (props) => {
+  const [searchKeyword, setSearchKeyword] = useState('')
   const [viewInput, setViewInput] = useState('')
   const is_login = useSelector((state) => state.user.is_login)
   let cookie = getCookie('x_auth')
@@ -18,17 +21,23 @@ const Header = (props) => {
       }, 500)
     }
   }, [viewInput])
-  console.log(cookie)
+
+  const _handleChange = (e) => {
+    setSearchKeyword(e.target.value)
+  }
+  const handleChange = _.debounce(_handleChange, 300)
 
   return (
     <>
       {cookie && is_login ? (
-        <Grid side_flex padding="16px">
+        <Grid border side_flex padding="16px">
           <Grid width="auto">logo</Grid>
           <Grid width="auto">
             <ContainerBox>
               <Grid width="">
-                {viewInput && <InputBox className={viewInput} />}
+                {viewInput && (
+                  <InputBox onChange={handleChange} className={viewInput} />
+                )}
               </Grid>
               <Button
                 bg="#fff"
@@ -64,12 +73,14 @@ const Header = (props) => {
           </Grid>
         </Grid>
       ) : (
-        <Grid side_flex padding="16px">
+        <Grid border side_flex padding="16px">
           <Grid width="auto">logo</Grid>
           <Grid width="auto">
             <ContainerBox>
               <Grid width="">
-                {viewInput && <InputBox className={viewInput} />}
+                {viewInput && (
+                  <InputBox onChange={handleChange} className={viewInput} />
+                )}
               </Grid>
               <Button
                 bg="#fff"
