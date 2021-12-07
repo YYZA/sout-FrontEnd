@@ -1,7 +1,17 @@
+import axios from 'axios'
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import { Button, Grid, Input, Text } from '../elements'
 
 const SignIn = (props) => {
+  // useEffect(() => {
+  //   axios
+  //     .post('/user/login', { email: 'test', password: 'test' })
+  //     .then((res) => {
+  //       console.log(res)
+  //     })
+  // })
+
   return (
     <>
       <Grid flex padding="16px">

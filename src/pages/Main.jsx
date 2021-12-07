@@ -5,10 +5,10 @@ import Post from "../components/Post";
 
 const Main = (props) => {
   // useEffect(() => {
-  //   axios.post("/newpost", { content: "asd", url: "asd" }).then((res) => {
-  //     console.log(res);
-  //   });
-  // });
+  //   axios.post('/newpost', { content: 'asd', url: 'asd' }).then((res) => {
+  //     console.log(res)
+  //   })
+  // })
 
   return (
     <>
