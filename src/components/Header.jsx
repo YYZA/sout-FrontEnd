@@ -1,10 +1,12 @@
+import _ from 'lodash'
 import { Search } from '@material-ui/icons'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Button, Grid } from '../elements'
 import { history } from '../redux/configureStore'
 
 const Header = (props) => {
+  const [searchKeyword, setSearchKeyword] = useState('')
   const [viewInput, setViewInput] = useState('')
   useEffect(() => {
     if (viewInput === 'closeAnimation') {
@@ -13,14 +15,23 @@ const Header = (props) => {
       }, 500)
     }
   }, [viewInput])
+
+  const debounce = _.debounce((e) => {
+    setSearchKeyword(e.target.value)
+  }, 500)
+
+  const handleChange = useCallback(debounce, [debounce])
+
   return (
     <>
-      <Grid side_flex padding="16px">
+      <Grid side_flex borderBottom padding="16px">
         <Grid width="auto">logo</Grid>
         <Grid width="auto">
           <ContainerBox>
             <Grid width="">
-              {viewInput && <InputBox className={viewInput} />}
+              {viewInput && (
+                <InputBox onChange={handleChange} className={viewInput} />
+              )}
             </Grid>
             <Button
               bg="#fff"

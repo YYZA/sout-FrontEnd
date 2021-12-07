@@ -14,7 +14,7 @@ const SignIn = (props) => {
 
   return (
     <>
-      <Grid flex padding="16px">
+      <Grid flex padding="16px" margin="20px 0px 0px 0px">
         <Text fontSize="36px" bold>
           Sign In
         </Text>
