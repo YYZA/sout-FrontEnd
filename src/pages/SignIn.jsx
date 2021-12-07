@@ -27,6 +27,14 @@ const SignIn = (props) => {
       })
   }
 
+  const kakaoLogin = () => {
+    window.open(
+      'https://kauth.kakao.com/oauth/authorize?client_id=61db540d862894225a4938d0133cb467&redirect_uri=http://localhost:8080/user/kakao/callback&response_type=code',
+      'kakao',
+      'width= 400, height=300'
+    )
+  }
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -50,12 +58,19 @@ const SignIn = (props) => {
               />
             </Grid>
             <Grid margin="20px 0px 0px 0px">
-              <KakaoButton>카카오로 시작하기</KakaoButton>
+              <KakaoButton id="login-kakao-btn" onClick={kakaoLogin}>
+                카카오로 시작하기
+              </KakaoButton>
               <ButtonContainer flex>
                 <Button type="submit" padding="10px" width="100%">
                   로그인
                 </Button>
-                <Button margin="0px 0px 0px 10px" padding="10px" width="100%">
+                <Button
+                  _onClick={() => history.push('/signup')}
+                  margin="0px 0px 0px 10px"
+                  padding="10px"
+                  width="100%"
+                >
                   회원가입하러 가기
                 </Button>
               </ButtonContainer>
