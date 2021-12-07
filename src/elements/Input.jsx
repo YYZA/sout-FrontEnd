@@ -1,9 +1,9 @@
-import styled from 'styled-components'
-import Grid from './Grid'
-import Text from './Text'
+import styled from "styled-components";
+import Grid from "./Grid";
+import Text from "./Text";
 
 const Input = (props) => {
-  const { label, multiLine, placeholder, _onChange } = props
+  const { label, multiLine, placeholder, _onChange } = props;
 
   if (multiLine) {
     return (
@@ -15,7 +15,7 @@ const Input = (props) => {
           onChange={_onChange}
         ></TextareaBox>
       </Grid>
-    )
+    );
   }
 
   return (
@@ -25,15 +25,15 @@ const Input = (props) => {
         <InputBox placeholder={placeholder} onChange={_onChange}></InputBox>
       </Grid>
     </>
-  )
-}
+  );
+};
 
 Input.defaultProps = {
-  label: '',
+  label: "",
   multiLine: false,
-  placeholder: '',
+  placeholder: "",
   _onChange: () => {},
-}
+};
 const InputBox = styled.input`
   border-radius: 5px;
   margin: 10px 0px;
@@ -41,7 +41,8 @@ const InputBox = styled.input`
   width: 100%;
   padding: 16px 10px;
   box-sizing: border-box;
-`
+  background: #fff;
+`;
 const TextareaBox = styled.textarea`
   border-radius: 5px;
   margin: 10px 0px;
@@ -51,6 +52,6 @@ const TextareaBox = styled.textarea`
   padding: 16px 10px;
   resize: none;
   box-sizing: border-box;
-`
+`;
 
-export default Input
+export default Input;
