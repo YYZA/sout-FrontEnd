@@ -13,6 +13,7 @@ const Grid = (props) => {
     bg,
     shadow,
     radius,
+    min_height,
   } = props;
   const styles = {
     width,
@@ -25,6 +26,7 @@ const Grid = (props) => {
     bg,
     shadow,
     radius,
+    min_height,
   };
 
   return (
@@ -44,11 +46,12 @@ Grid.defaultProps = {
   border: "",
   bg: "",
   shadow: false,
-  radius: false,
+  radius: "",
+  min_height: "",
 };
 
 const GridBox = styled.div`
-  ${(props) => (props.radius ? "border-radius:5px;" : "")}
+  border-radius: ${(props) => props.radius};
   ${(props) =>
     props.shadow
       ? "box-shadow:rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;"
@@ -59,6 +62,7 @@ const GridBox = styled.div`
   height: ${(props) => props.height};
   padding: ${(props) => props.padding};
   background: ${(props) => props.bg};
+  min-height: ${(props) => props.min_height};
   ${(props) =>
     props.flex
       ? "display: flex; align-items: center; justify-content: center; flex-direction: column;"
