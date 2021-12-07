@@ -1,27 +1,15 @@
 import React from "react";
+import axios from "axios";
 import { Input, Button, Grid } from "../elements/index";
-import { useDispatch, useSelector } from "react-redux";
-import { history } from "../redux/configureStore";
+import { useDispatch } from "react-redux";
 import { actionCreators } from "../redux/modules/post";
+import { useEffect } from "react";
+import { getCookie } from "../shared/Cookie";
 
 const PostWrite = (props) => {
   const [content, setContent] = React.useState("");
   const [url, setUrl] = React.useState("");
-  const post = { content, url };
-
   const dispatch = useDispatch();
-
-  const addPost = () => {
-    dispatch(actionCreators.newPost(post));
-    history.push("/");
-  };
-
-  const data = useSelector((state) => state);
-  console.log(post);
-  if (post === null) {
-    window.alert("내용을 입력해주세요!");
-    return;
-  }
 
   return (
     <React.Fragment>
@@ -51,9 +39,12 @@ const PostWrite = (props) => {
           placeholder="도움이 되는 링크를 공유해주세요!"
         ></Input>
         <Button
+          _onClick={() => {
+            dispatch(actionCreators.addPostDB(content, url));
+            console.log(content, url);
+          }}
           color="#262223"
           bg="#ddc6b6"
-          _onClick={addPost}
           padding="10px 20px"
         >
           작성하기
