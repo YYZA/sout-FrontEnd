@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { Button, Grid, Input, Text } from '../elements'
 import { userActions } from '../redux/modules/user'
+import { instance } from '../shared/api'
+import { KAKAO_AUTH_URL } from '../shared/kakaoAuth'
 
 const SignIn = (props) => {
   const dispatch = useDispatch()
@@ -11,7 +13,7 @@ const SignIn = (props) => {
 
   const onSubmit = async (data) => {
     await axios
-      .post('/user/login', {
+      .post('http://localhost:8080/user/login', {
         username: data.email,
         password: data.password,
       })
@@ -28,16 +30,8 @@ const SignIn = (props) => {
         alert('아이디 혹은 비밀번호를 확인하세요.')
       })
   }
-
-  const kakaoLogin = () => {
-    // window.open(
-
-    //   'kakao',
-    //   'width= 400, height=300'
-    // )
-    props.history.push(
-      'https://kauth.kakao.com/oauth/authorize?client_id=61db540d862894225a4938d0133cb467&redirect_uri=http://localhost:8080/user/kakao/callback&response_type=code'
-    )
+  const kakaoAuth = () => {
+    window.location.href = KAKAO_AUTH_URL
   }
 
   return (
@@ -81,7 +75,7 @@ const SignIn = (props) => {
         </Grid>
       </form>
       <Grid padding="0px 16px">
-        <KakaoButton id="login-kakao-btn" onClick={kakaoLogin}>
+        <KakaoButton id="login-kakao-btn" onClick={kakaoAuth}>
           카카오로 시작하기
         </KakaoButton>
       </Grid>

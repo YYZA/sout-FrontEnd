@@ -11,7 +11,9 @@ const Header = (props) => {
   const [searchKeyword, setSearchKeyword] = useState('')
   const [viewInput, setViewInput] = useState('')
   const is_login = useSelector((state) => state.user.is_login)
+
   let cookie = getCookie('x_auth')
+
   useEffect(() => {
     if (viewInput === 'closeAnimation') {
       setTimeout(() => {
@@ -30,7 +32,7 @@ const Header = (props) => {
       {cookie ? (
         <Grid border side_flex padding="16px">
           <Grid width="auto">
-            <Logo>sout</Logo>
+            <Logo onClick={() => history.push('/')}>sout</Logo>
           </Grid>
           <Grid width="auto">
             <ContainerBox>
@@ -81,7 +83,7 @@ const Header = (props) => {
         </Grid>
       ) : (
         <Grid border side_flex padding="16px">
-          <Logo>sout</Logo>
+          <Logo onClick={() => history.push('/')}>sout</Logo>
           <Grid width="auto">
             <ContainerBox>
               <Grid width="">
@@ -125,6 +127,7 @@ const Header = (props) => {
 }
 
 const Logo = styled.p`
+  cursor: pointer;
   font-family: 'Indie Flower', cursive;
   font-weight: bold;
   font-size: 24px;
