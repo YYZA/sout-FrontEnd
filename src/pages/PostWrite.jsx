@@ -1,10 +1,7 @@
 import React from "react";
-import axios from "axios";
 import { Input, Button, Grid } from "../elements/index";
 import { useDispatch } from "react-redux";
 import { actionCreators } from "../redux/modules/post";
-import { useEffect } from "react";
-import { getCookie } from "../shared/Cookie";
 
 const PostWrite = (props) => {
   const [content, setContent] = React.useState("");

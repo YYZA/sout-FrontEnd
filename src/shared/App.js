@@ -1,18 +1,20 @@
-import { ConnectedRouter } from 'connected-react-router'
-import { Route } from 'react-router'
-import { ThemeProvider } from 'styled-components'
-import Footer from '../components/Footer'
-import Header from '../components/Header'
-import Main from '../pages/Main'
-import PostWrite from '../pages/PostWrite'
-import PostEdit from '../pages/PostEdit'
-import SignIn from '../pages/SignIn'
-import SignUp from '../pages/SignUp'
-import UserProfile from '../pages/UserProfile'
-import { history } from '../redux/configureStore'
-import GlobalStyles from './GlobalStyles'
-import theme from './theme'
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+
+import { ConnectedRouter } from "connected-react-router";
+import { Route } from "react-router";
+import { ThemeProvider } from "styled-components";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import Main from "../pages/Main";
+import PostWrite from "../pages/PostWrite";
+import PostEdit from "../components/PostEdit";
+import SignIn from "../pages/SignIn";
+import SignUp from "../pages/SignUp";
+import UserProfile from "../pages/UserProfile";
+import { history } from "../redux/configureStore";
+import GlobalStyles from "./GlobalStyles";
+import theme from "./theme";
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+
 
 const queryClient = new QueryClient()
 

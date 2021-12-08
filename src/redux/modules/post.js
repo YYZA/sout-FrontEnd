@@ -1,4 +1,4 @@
-import { createAction, handleAction, handleActions } from "redux-actions";
+import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
 import { getCookie } from "../../shared/Cookie";
@@ -7,12 +7,18 @@ import { instance } from "../../shared/api";
 const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";
 const DELETE_POST = "DELETE_POST";
+const EDIT_POST = "EDIT_POST";
 
 const setPost = createAction(SET_POST, (post) => ({
   post,
 }));
 const addPost = createAction(ADD_POST, (content, url) => ({ content, url }));
 const deletePost = createAction(DELETE_POST, (post_id) => ({ post_id }));
+const editPost = createAction(EDIT_POST, (content, url, post_id) => ({
+  content,
+  url,
+  post_id,
+}));
 
 const initialState = {
   list: [],
@@ -51,6 +57,24 @@ const deletePostDB = (post_id) => {
   };
 };
 
+const editPostDB = (content, url, post_id, post) => {
+  return function (dispatch, getState, { history }) {
+    axios
+      .put(
+        `/newpost/${post_id}`,
+        { content, url },
+        {
+          headers: {
+            Authorization: cookie,
+          },
+        }
+      )
+      .then((res) => {
+        dispatch(editPost(post_id, { ...post }));
+      });
+  };
+};
+
 const getPostDB = () => {
   return async function (dispatch, getState, { history }) {
     await axios
@@ -80,6 +104,11 @@ export default handleActions(
         draft.list.splice(idx, 1);
         // draft.list.push(...action.payload.post);
       }),
+    [EDIT_POST]: (state, action) =>
+      produce(state, (draft) => {
+        let idx = draft.list.findIndex((p) => p.id === action.payload.post_id);
+        draft.list[idx] = { ...draft.list[idx], ...action.payload.post };
+      }),
 
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
@@ -92,7 +121,7 @@ export default handleActions(
 const actionCreators = {
   addPostDB,
   getPostDB,
-
+  editPostDB,
   deletePostDB,
 };
 

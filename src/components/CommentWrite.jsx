@@ -11,6 +11,7 @@ const CommentWrite = (props) => {
   const onChange = (e) => {
     setCotentText(e.target.value);
   };
+  console.log(props);
 
   // const addComment = () => {
   //   axios.post("/comment", { content: content }).then((res) => {
