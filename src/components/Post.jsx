@@ -83,7 +83,10 @@ const Main = (props) => {
                   </DeleteCircle>
                   <EditCircle
                     onClick={() => {
-                      history.push("/edit");
+                      history.push({
+                        pathname: "/edit",
+                        props: { props },
+                      });
                     }}
                   >
                     Edit

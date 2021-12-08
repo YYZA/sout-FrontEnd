@@ -1,16 +1,14 @@
 import React from "react";
-import axios from "axios";
 import { Input, Button, Grid } from "../elements/index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "../redux/modules/post";
-import { useEffect } from "react";
-import { getCookie } from "../shared/Cookie";
+import { history } from "../redux/configureStore";
 
 const PostEdit = (props) => {
   const [content, setContent] = React.useState("");
   const [url, setUrl] = React.useState("");
   const dispatch = useDispatch();
-
+  let post_id = props.location.props.props.postId;
   return (
     <React.Fragment>
       <Grid
@@ -38,7 +36,15 @@ const PostEdit = (props) => {
           label="업로드 링크"
           placeholder="도움이 되는 링크를 공유해주세요!"
         ></Input>
-        <Button color="#262223" bg="#ddc6b6" padding="10px 20px">
+        <Button
+          _onClick={() => {
+            dispatch(actionCreators.editPostDB(content, url, post_id));
+            history.push("/");
+          }}
+          color="#262223"
+          bg="#ddc6b6"
+          padding="10px 20px"
+        >
           수정하기
         </Button>
       </Grid>
