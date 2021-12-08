@@ -18,9 +18,9 @@ const initialState = {
 };
 const cookie = getCookie("x_auth");
 const addPostDB = (content, url) => {
-  return function (dispatch, getState, { history }) {
+  return async function (dispatch, getState, { history }) {
     console.log(cookie);
-    axios
+    await axios
       .post(
         "/newpost",
         { content, url },
@@ -36,14 +36,31 @@ const addPostDB = (content, url) => {
     history.push("/");
   };
 };
-
-const getPostDB = () => {
+const deletePostDB = (post_id) => {
   return function (dispatch, getState, { history }) {
     axios
-      .get("http://localhost:8080/", {
-        params: { page: 0, size: 1 },
+      .delete(`/${post_id}`, {
+        headers: {
+          Authorization: cookie,
+        },
       })
       .then((res) => {
+        dispatch(deletePost(post_id));
+      });
+  };
+};
+
+const getPostDB = () => {
+  return async function (dispatch, getState, { history }) {
+    await axios
+      .get("/*", {
+        params: { page: 0, size: 30 },
+        headers: {
+          Authorization: cookie,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
         dispatch(setPost(res.data));
       });
   };
@@ -51,17 +68,16 @@ const getPostDB = () => {
 
 export default handleActions(
   {
-    [SET_POST]: (state, action) =>
+    [SET_POST]: (state, action) => {
+      return { list: action.payload.post };
+    },
+    [DELETE_POST]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.push(...action.payload.post);
+        let idx = draft.list.findIndex(
+          (val) => val.id === action.payload.post_id
+        );
+        draft.list.splice(idx, 1);
       }),
-    // [DELETE_POST]: (state, action) =>
-    //   produce(state, (draft) => {
-    //     let idx = draft.list.findIndex(
-    //       (val) => val.id === action.payload.post_id
-    //     );
-    //     draft.list.splice(idx, 1);
-    //   }),
 
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
@@ -74,6 +90,7 @@ export default handleActions(
 const actionCreators = {
   addPostDB,
   getPostDB,
+  deletePostDB,
 };
 
 export { actionCreators };
