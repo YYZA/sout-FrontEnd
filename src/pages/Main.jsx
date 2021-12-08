@@ -16,6 +16,7 @@ const Main = (props) => {
     <React.Fragment>
       <Grid flex>
         {post_list.map((p, idx) => {
+          console.log(p);
           return (
             <Grid key={idx}>
               <Post {...p} />

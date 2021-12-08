@@ -10,7 +10,9 @@ import { actionCreators } from "../redux/modules/post";
 const Main = (props) => {
   let cookie = getCookie("x_auth");
   const is_login = useSelector((state) => state.user.is_login);
+  const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
+  console.log(user.username);
 
   return (
     <React.Fragment>
@@ -22,7 +24,8 @@ const Main = (props) => {
           height="100%"
           width="50vw"
           margin="20px auto"
-          min_height="400px"
+          min_height="50%"
+          min_width="90%"
           padding="0px 0px"
         >
           <Grid padding="16px">
@@ -52,9 +55,10 @@ const Main = (props) => {
           bg="#262223"
           radius="5px"
           height="100%"
-          width="50vw"
+          max_width="50vw"
           margin="20px auto"
-          min_height="400px"
+          min_height="50%"
+          min_width="90%"
           padding="0px 0px"
         >
           <Grid padding="16px">
@@ -75,7 +79,6 @@ const Main = (props) => {
                 <div>
                   <DeleteCircle
                     onClick={() => {
-                      window.location.reload("/");
                       dispatch(actionCreators.deletePostDB(`${props.postId}`));
                     }}
                   >
