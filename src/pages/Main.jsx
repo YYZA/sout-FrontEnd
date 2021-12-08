@@ -7,6 +7,7 @@ import { actionCreators } from "../redux/modules/post";
 const Main = (props) => {
   const post_list = useSelector((state) => state.post.list);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
 
   useEffect(() => {
     dispatch(actionCreators.getPostDB());
@@ -16,12 +17,19 @@ const Main = (props) => {
     <React.Fragment>
       <Grid flex>
         {post_list.map((p, idx) => {
-          console.log(p);
-          return (
-            <Grid key={idx}>
-              <Post {...p} />
-            </Grid>
-          );
+          if (p.email === user.username) {
+            return (
+              <Grid key={idx}>
+                <Post {...p} is_me />
+              </Grid>
+            );
+          } else {
+            return (
+              <Grid key={idx}>
+                <Post {...p} />
+              </Grid>
+            );
+          }
         })}
       </Grid>
     </React.Fragment>

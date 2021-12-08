@@ -98,22 +98,6 @@ const getPostDB = () => {
   };
 };
 
-const getPostID = () => {
-  return async function (dispatch, getState, { history }) {
-    await axios
-      .get("/*", {
-        params: { page: 0, size: 30 },
-        headers: {
-          Authorization: cookie,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        dispatch(setPost(res.data));
-      });
-  };
-};
-
 export default handleActions(
   {
     [SET_POST]: (state, action) =>
