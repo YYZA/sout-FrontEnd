@@ -10,8 +10,8 @@ const SignIn = (props) => {
   const dispatch = useDispatch()
   const { register, handleSubmit } = useForm()
 
-  const onSubmit = (data) => {
-    axios
+  const onSubmit = async (data) => {
+    await axios
       .post('/user/login', {
         username: data.email,
         password: data.password,
@@ -24,6 +24,10 @@ const SignIn = (props) => {
           })
         )
         history.push('/')
+      })
+      .catch((err) => {
+        console.log(err)
+        alert('아이디 혹은 비밀번호를 확인하세요.')
       })
   }
 
@@ -58,9 +62,6 @@ const SignIn = (props) => {
               />
             </Grid>
             <Grid margin="20px 0px 0px 0px">
-              <KakaoButton id="login-kakao-btn" onClick={kakaoLogin}>
-                카카오로 시작하기
-              </KakaoButton>
               <ButtonContainer flex>
                 <Button type="submit" padding="10px" width="100%">
                   로그인
@@ -78,6 +79,11 @@ const SignIn = (props) => {
           </Grid>
         </Grid>
       </form>
+      <Grid padding="0px 16px">
+        <KakaoButton id="login-kakao-btn" onClick={kakaoLogin}>
+          카카오로 시작하기
+        </KakaoButton>
+      </Grid>
     </>
   )
 }
@@ -99,7 +105,7 @@ const ButtonContainer = styled.div`
 `
 
 const KakaoButton = styled.button`
-  margin-top: 10px;
+  border-radius: 5px;
   width: 100%;
   background: #fae100;
   padding: 10px;

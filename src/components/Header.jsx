@@ -55,7 +55,7 @@ const Header = (props) => {
               <Button
                 padding="10px"
                 margin="0px 0px 0px 10px"
-                _onClick={() => history.push('/signin')}
+                _onClick={() => history.push('/profile')}
               >
                 프로필
               </Button>

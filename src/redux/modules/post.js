@@ -2,6 +2,7 @@ import { createAction, handleAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
 import { getCookie } from "../../shared/Cookie";
+import { instance } from "../../shared/api";
 
 const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";
@@ -77,6 +78,7 @@ export default handleActions(
           (val) => val.id === action.payload.post_id
         );
         draft.list.splice(idx, 1);
+        draft.list.push(...action.payload.post);
       }),
 
     [ADD_POST]: (state, action) =>
@@ -90,6 +92,7 @@ export default handleActions(
 const actionCreators = {
   addPostDB,
   getPostDB,
+
   deletePostDB,
 };
 
