@@ -3,13 +3,12 @@ import reset from 'styled-reset'
 
 const GlobalStyles = createGlobalStyle`
   ${reset}
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;700&display=swap');
-  
   * {
     box-sizing: border-box;
   }
 
   body {
+    font-family: 'Indie Flower', cursive;
     font-family: 'Noto Sans KR', sans-serif;
     font-family: 'Roboto', sans-serif;
   }
