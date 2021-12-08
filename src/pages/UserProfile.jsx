@@ -1,47 +1,47 @@
-import styled from 'styled-components'
-import { Button, Grid, Input, Text } from '../elements'
-import { useMutation, useQuery } from 'react-query'
-import axios from 'axios'
-import { getCookie } from '../shared/Cookie'
-import { useEffect, useState } from 'react'
+import styled from "styled-components";
+import { Button, Grid, Input, Text } from "../elements";
+import { useMutation, useQuery } from "react-query";
+import axios from "axios";
+import { getCookie } from "../shared/Cookie";
+import { useEffect, useState } from "react";
 
 const UserProfile = (props) => {
-  const cookie = getCookie('x_auth')
-  const [userInfo, setUserInfo] = useState({})
-  const [modifyInfo, setModifyInfo] = useState()
-  const { isLoading, error, data } = useQuery('userinfo', async () => {
+  const cookie = getCookie("x_auth");
+  const [userInfo, setUserInfo] = useState({});
+  const [modifyInfo, setModifyInfo] = useState();
+  const { isLoading, error, data } = useQuery("userinfo", async () => {
     await axios
       .post(
-        '/userinfo',
+        "/userinfo",
         {},
         {
           headers: { Authorization: cookie },
         }
       )
-      .then((res) => setUserInfo(res.data))
-  })
+      .then((res) => setUserInfo(res.data));
+  });
   // console.log(modifyInfo === undefined) 입력 안 하면 true
   const mutation = useMutation(async () => {
-    const cookie = getCookie('x_auth')
+    const cookie = getCookie("x_auth");
     if (modifyInfo === undefined) {
-      alert('바뀐 게 없어용...')
-      return
+      alert("바뀐 게 없어용...");
+      return;
     }
     const newUserInfo = {
       username: userInfo.email,
       nickname: userInfo.nickname,
       interest: userInfo.interest,
       passowrd: userInfo.password,
-    }
+    };
 
     await axios
-      .put('/settings/profile', userInfo, {
+      .put("/setting/profile", userInfo, {
         headers: { Authorization: cookie },
       })
       .then((res) => {
-        console.log(res)
-      })
-  })
+        console.log(res);
+      });
+  });
 
   return (
     <>
@@ -55,7 +55,7 @@ const UserProfile = (props) => {
           <InputBox
             readOnly
             placeholder="아이디"
-            value={userInfo.email || ''}
+            value={userInfo.email || ""}
           />
         </Grid>
         <Grid margin="10px 0px 0px 0px">
@@ -63,10 +63,10 @@ const UserProfile = (props) => {
           <InputBox
             placeholder="닉네임"
             onChange={(e) => {
-              setModifyInfo({ ...modifyInfo, nickname: e.target.value })
-              setUserInfo({ ...userInfo, nickname: e.target.value })
+              setModifyInfo({ ...modifyInfo, nickname: e.target.value });
+              setUserInfo({ ...userInfo, nickname: e.target.value });
             }}
-            value={userInfo.nickname || ''}
+            value={userInfo.nickname || ""}
           />
         </Grid>
         <Grid margin="10px 0px 0px 0px">
@@ -74,10 +74,10 @@ const UserProfile = (props) => {
           <InputBox
             placeholder="관심분야"
             onChange={(e) => {
-              setModifyInfo({ ...modifyInfo, interest: e.target.value })
-              setUserInfo({ ...userInfo, interest: e.target.value })
+              setModifyInfo({ ...modifyInfo, interest: e.target.value });
+              setUserInfo({ ...userInfo, interest: e.target.value });
             }}
-            value={userInfo.interest || ''}
+            value={userInfo.interest || ""}
           />
         </Grid>
         <Grid margin="10px 0px 0px 0px">
@@ -86,7 +86,7 @@ const UserProfile = (props) => {
             type="password"
             readOnly
             placeholder="패스워드"
-            value={userInfo.email || ''}
+            value={userInfo.email || ""}
           />
         </Grid>
         <Grid margin="10px 0px 0px 0px">
@@ -96,8 +96,8 @@ const UserProfile = (props) => {
         </Grid>
       </Grid>
     </>
-  )
-}
+  );
+};
 
 const InputBox = styled.input`
   border-radius: 5px;
@@ -106,7 +106,7 @@ const InputBox = styled.input`
   width: 100%;
   padding: 16px 10px;
   box-sizing: border-box;
-`
+`;
 
 const ImageBox = styled.div`
   width: 100px;
@@ -114,6 +114,6 @@ const ImageBox = styled.div`
   border-radius: 50%;
   background: #bbb;
   margin-top: 20px;
-`
+`;
 
-export default UserProfile
+export default UserProfile;

@@ -78,7 +78,7 @@ export default handleActions(
           (val) => val.id === action.payload.post_id
         );
         draft.list.splice(idx, 1);
-        draft.list.push(...action.payload.post);
+        // draft.list.push(...action.payload.post);
       }),
 
     [ADD_POST]: (state, action) =>

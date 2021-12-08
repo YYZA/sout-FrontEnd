@@ -81,7 +81,13 @@ const Main = (props) => {
                   >
                     Delete
                   </DeleteCircle>
-                  <EditCircle>Edit</EditCircle>
+                  <EditCircle
+                    onClick={() => {
+                      history.push("/edit");
+                    }}
+                  >
+                    Edit
+                  </EditCircle>
                 </div>
               </div>
             </Grid>
