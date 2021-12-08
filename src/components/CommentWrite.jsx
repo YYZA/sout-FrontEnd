@@ -22,17 +22,20 @@ const CommentWrite = (props) => {
     <React.Fragment>
       <List>
         <Input
+          type="submit"
           width="100%"
           placeholder="댓글 내용을 입력해주세요 :)"
           _onChange={onChange}
         />
         <Button
-          width="10%"
+          width="20%"
           _onClick={() => {
-            dispatch(commentCreators.addCommentDB(content));
+            dispatch(commentCreators.addCommentDB(`${props.postId}`, content));
           }}
         >
-          작성
+          <span style={{ fontSize: "24px" }}>
+            <u>✏️</u>
+          </span>
         </Button>
       </List>
     </React.Fragment>
