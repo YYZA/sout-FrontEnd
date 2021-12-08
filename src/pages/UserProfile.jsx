@@ -27,15 +27,9 @@ const UserProfile = (props) => {
       alert('바뀐 게 없어용...')
       return
     }
-    const newUserInfo = {
-      username: userInfo.email,
-      nickname: userInfo.nickname,
-      interest: userInfo.interest,
-      passowrd: userInfo.password,
-    }
 
     await axios
-      .put('/settings/profile', userInfo, {
+      .put('/setting/profile', userInfo, {
         headers: { Authorization: cookie },
       })
       .then((res) => {

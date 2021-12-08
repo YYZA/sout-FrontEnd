@@ -32,10 +32,13 @@ const SignIn = (props) => {
   }
 
   const kakaoLogin = () => {
-    window.open(
-      'https://kauth.kakao.com/oauth/authorize?client_id=61db540d862894225a4938d0133cb467&redirect_uri=http://localhost:8080/user/kakao/callback&response_type=code',
-      'kakao',
-      'width= 400, height=300'
+    // window.open(
+
+    //   'kakao',
+    //   'width= 400, height=300'
+    // )
+    history.push(
+      'https://kauth.kakao.com/oauth/authorize?client_id=61db540d862894225a4938d0133cb467&redirect_uri=http://localhost:8080/user/kakao/callback&response_type=code'
     )
   }
 
