@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { Button, Grid, Input, Text } from '../elements'
-import { history } from '../redux/configureStore'
 import { userActions } from '../redux/modules/user'
 
 const SignIn = (props) => {
@@ -23,10 +22,9 @@ const SignIn = (props) => {
             username: data.email,
           })
         )
-        history.push('/')
+        props.history.push('/')
       })
       .catch((err) => {
-        console.log(err)
         alert('아이디 혹은 비밀번호를 확인하세요.')
       })
   }
@@ -37,7 +35,7 @@ const SignIn = (props) => {
     //   'kakao',
     //   'width= 400, height=300'
     // )
-    history.push(
+    props.history.push(
       'https://kauth.kakao.com/oauth/authorize?client_id=61db540d862894225a4938d0133cb467&redirect_uri=http://localhost:8080/user/kakao/callback&response_type=code'
     )
   }
@@ -70,7 +68,7 @@ const SignIn = (props) => {
                   로그인
                 </Button>
                 <Button
-                  _onClick={() => history.push('/signup')}
+                  _onClick={() => props.history.push('/signup')}
                   margin="0px 0px 0px 10px"
                   padding="10px"
                   width="100%"

@@ -1,13 +1,11 @@
 import { Search } from '@material-ui/icons'
 import _ from 'lodash'
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled, { keyframes } from 'styled-components'
 import { Button, Grid } from '../elements'
 import { history } from '../redux/configureStore'
 import { deleteCookie, getCookie } from '../shared/Cookie'
-import { useForm } from 'react-hook-form'
 
 const Header = (props) => {
   const [searchKeyword, setSearchKeyword] = useState('')
@@ -29,9 +27,11 @@ const Header = (props) => {
 
   return (
     <>
-      {cookie && is_login ? (
+      {cookie ? (
         <Grid border side_flex padding="16px">
-          <Grid width="auto">logo</Grid>
+          <Grid width="auto">
+            <Logo>sout</Logo>
+          </Grid>
           <Grid width="auto">
             <ContainerBox>
               <Grid width="">
@@ -55,6 +55,13 @@ const Header = (props) => {
               <Button
                 padding="10px"
                 margin="0px 0px 0px 10px"
+                _onClick={() => history.push('/write')}
+              >
+                글쓰기
+              </Button>
+              <Button
+                padding="10px"
+                margin="0px 0px 0px 10px"
                 _onClick={() => history.push('/profile')}
               >
                 프로필
@@ -74,7 +81,7 @@ const Header = (props) => {
         </Grid>
       ) : (
         <Grid border side_flex padding="16px">
-          <Grid width="auto">logo</Grid>
+          <Logo>sout</Logo>
           <Grid width="auto">
             <ContainerBox>
               <Grid width="">
@@ -116,6 +123,12 @@ const Header = (props) => {
     </>
   )
 }
+
+const Logo = styled.p`
+  font-family: 'Indie Flower', cursive;
+  font-weight: bold;
+  font-size: 24px;
+`
 
 const ContainerBox = styled.div`
   display: flex;
