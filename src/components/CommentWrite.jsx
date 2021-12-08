@@ -29,12 +29,12 @@ const CommentWrite = (props) => {
           _onChange={onChange}
         />
         <Button
-          width="20%"
+          width="10%"
           _onClick={() => {
             dispatch(commentCreators.addCommentDB(`${props.postId}`, content));
           }}
         >
-          <span style={{ fontSize: "24px" }}>
+          <span style={{ fontSize: "20px" }}>
             <u>✏️</u>
           </span>
         </Button>

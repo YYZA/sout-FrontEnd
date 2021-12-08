@@ -23,9 +23,12 @@ const editPost = createAction(EDIT_POST, (content, url, post_id) => ({
 const initialState = {
   list: [],
 };
+
 const cookie = getCookie("x_auth");
+
 const addPostDB = (content, url) => {
   return async function (dispatch, getState, { history }) {
+    const cookie = getCookie("x_auth");
     console.log(cookie);
     await axios
       .post(
@@ -45,6 +48,8 @@ const addPostDB = (content, url) => {
 };
 const deletePostDB = (post_id) => {
   return function (dispatch, getState, { history }) {
+    const cookie = getCookie("x_auth");
+    console.log(cookie);
     axios
       .delete(`/${post_id}`, {
         headers: {
@@ -52,6 +57,7 @@ const deletePostDB = (post_id) => {
         },
       })
       .then((res) => {
+        console.log(res);
         dispatch(deletePost(post_id));
       });
   };
@@ -59,6 +65,7 @@ const deletePostDB = (post_id) => {
 
 const editPostDB = (content, url, post_id, post) => {
   return function (dispatch, getState, { history }) {
+    const cookie = getCookie("x_auth");
     axios
       .put(
         `/newpost/${post_id}`,
@@ -91,11 +98,28 @@ const getPostDB = () => {
   };
 };
 
+const getPostID = () => {
+  return async function (dispatch, getState, { history }) {
+    await axios
+      .get("/*", {
+        params: { page: 0, size: 30 },
+        headers: {
+          Authorization: cookie,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        dispatch(setPost(res.data));
+      });
+  };
+};
+
 export default handleActions(
   {
-    [SET_POST]: (state, action) => {
-      return { list: action.payload.post };
-    },
+    [SET_POST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list = action.payload.post;
+      }),
     [DELETE_POST]: (state, action) =>
       produce(state, (draft) => {
         let idx = draft.list.findIndex(
