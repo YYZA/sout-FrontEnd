@@ -10,9 +10,7 @@ import { actionCreators } from "../redux/modules/post";
 const Main = (props) => {
   let cookie = getCookie("x_auth");
   const is_login = useSelector((state) => state.user.is_login);
-  const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
-  console.log(user.username);
 
   return (
     <React.Fragment>
@@ -76,25 +74,29 @@ const Main = (props) => {
                     {props.nickname}/ {props.interest}
                   </Text>
                 </div>
-                <div>
-                  <DeleteCircle
-                    onClick={() => {
-                      dispatch(actionCreators.deletePostDB(`${props.postId}`));
-                    }}
-                  >
-                    Delete
-                  </DeleteCircle>
-                  <EditCircle
-                    onClick={() => {
-                      history.push({
-                        pathname: "/edit",
-                        props: { props },
-                      });
-                    }}
-                  >
-                    Edit
-                  </EditCircle>
-                </div>
+                {props.is_me && (
+                  <div>
+                    <DeleteCircle
+                      onClick={() => {
+                        dispatch(
+                          actionCreators.deletePostDB(`${props.postId}`)
+                        );
+                      }}
+                    >
+                      Delete
+                    </DeleteCircle>
+                    <EditCircle
+                      onClick={() => {
+                        history.push({
+                          pathname: "/edit",
+                          props: { props },
+                        });
+                      }}
+                    >
+                      Edit
+                    </EditCircle>
+                  </div>
+                )}
               </div>
             </Grid>
             <hr style={{ width: "100%", margin: "5px 0px" }} />
@@ -120,7 +122,7 @@ const Main = (props) => {
 
 Main.defaultProps = {
   comment: "",
-  user_name: "",
+  email: "",
   interest: "",
   content: "",
   modifiedAt: "",
