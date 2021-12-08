@@ -4,6 +4,7 @@ import { Button, Grid, Text } from '../elements'
 import { useForm } from 'react-hook-form'
 import { history } from '../redux/configureStore'
 import { createElement, useEffect, useRef, useState } from 'react'
+import { apis } from '../shared/axios'
 
 const SignUp = (props) => {
   const {
@@ -26,13 +27,17 @@ const SignUp = (props) => {
     }
 
     axios
-      .post('/user/signup', {
+      .post('http://localhost:8080/user/signup', {
         email: data.email,
         nickname: data.nickname,
         interest: data.interest,
         password: data.passwordCheck,
       })
       .then((res) => history.push('/signin'))
+
+    // apis
+    //   .signup(data.emil, data.nickname, data.interest, data.password)
+    //   .then((res) => console.log(res))
   }
 
   return (
