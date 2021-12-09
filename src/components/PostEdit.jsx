@@ -9,6 +9,8 @@ const PostEdit = (props) => {
   const [url, setUrl] = React.useState("");
   const dispatch = useDispatch();
   let post_id = props.location.props.props.postId;
+  let content_ex = props.location.props.props.content;
+  console.log(props);
   return (
     <React.Fragment>
       <Grid
@@ -27,7 +29,7 @@ const PostEdit = (props) => {
           }}
           multiLine
           label="내용"
-          placeholder="자신의 이야기를 입력해주세요 :)"
+          placeholder={content_ex}
         ></Input>
         <Input
           _onChange={(e) => {
