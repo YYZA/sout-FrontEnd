@@ -7,15 +7,17 @@ import CommentList from './CommentList'
 import { history } from '../redux/configureStore'
 import { getCookie } from '../shared/Cookie'
 import { actionCreators } from '../redux/modules/post'
+import OpengraphReactComponent from 'opengraph-react'
 
 const Main = (props) => {
   let cookie = getCookie('x_auth')
+  const authSession = sessionStorage.getItem('x_auth')
   const is_login = useSelector((state) => state.user.is_login)
   const dispatch = useDispatch()
-
+  console.log()
   return (
     <React.Fragment>
-      {!cookie ? (
+      {!(cookie || authSession) ? (
         <Grid
           border="1px solid"
           bg="#262223"
@@ -45,7 +47,12 @@ const Main = (props) => {
             <Text bold size="36px">
               {props.content}
             </Text>
-            <link href={props.url} />
+            {/* <OpengraphReactComponent
+              site={props.url}
+              appId={'1aba8b2f-e731-40c6-b6fc-015032e76ed7	'}
+              loader={'loading'}
+              size={'small'}
+            /> */}
           </Grid>
           <Grid padding="16px">
             <hr style={{ width: '100%', margin: '5px 0px' }} />
@@ -115,7 +122,12 @@ const Main = (props) => {
             <Text bold size="36px">
               {props.content}
             </Text>
-            <link href={props.url} />
+            {/* <OpengraphReactComponent
+              site={props.url}
+              appId={'1aba8b2f-e731-40c6-b6fc-015032e76ed7	'}
+              loader={'loading'}
+              size={'small'}
+            /> */}
           </Grid>
           <Grid padding="0px 16px">
             <CommentWrite {...props}></CommentWrite>

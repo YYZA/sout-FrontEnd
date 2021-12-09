@@ -37,8 +37,8 @@ const Header = (props) => {
           <Grid width="auto">
             <Logo
               onClick={() => {
-                window.location.reload()
                 history.push('/')
+                window.location.reload()
               }}
             >
               sout
@@ -107,8 +107,8 @@ const Header = (props) => {
         <Grid border side_flex padding="16px">
           <Logo
             onClick={() => {
-              window.location.reload()
               history.push('/')
+              window.location.reload()
             }}
           >
             sout

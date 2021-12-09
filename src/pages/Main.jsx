@@ -32,7 +32,8 @@ const Main = (props) => {
           .then((res) => {
             dispatch(userActions.setUser(res.data))
           })
-      } else {
+      } else if (authSession) {
+        console.log(authSession)
         await axios
           .post(
             'http://localhost:8080/userinfo',
@@ -46,6 +47,7 @@ const Main = (props) => {
           })
       }
     }
+
     if (
       (user.length === 0 && authSession !== null) ||
       (user.length === 0 && cookie !== undefined)
