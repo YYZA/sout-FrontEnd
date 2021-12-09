@@ -15,7 +15,7 @@ const Main = (props) => {
 
   return (
     <React.Fragment>
-      {!cookie && !is_login ? (
+      {!cookie ? (
         <Grid
           border="1px solid"
           bg="#262223"
@@ -139,7 +139,6 @@ const Main = (props) => {
 }
 
 Main.defaultProps = {
-  comment: '',
   email: '',
   interest: '',
   content: '',

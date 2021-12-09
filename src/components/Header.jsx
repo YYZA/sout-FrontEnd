@@ -1,15 +1,19 @@
 import { Search } from '@material-ui/icons'
 import _ from 'lodash'
 import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import styled, { keyframes } from 'styled-components'
-import { Button, Grid } from '../elements'
+import { Button, Grid, Text } from '../elements'
 import { history } from '../redux/configureStore'
 import { deleteCookie, getCookie } from '../shared/Cookie'
+import { actionCreators as postActions } from '../redux/modules/post'
 
 const Header = (props) => {
+  const dispatch = useDispatch()
   const [searchKeyword, setSearchKeyword] = useState('')
   const [viewInput, setViewInput] = useState('')
+  const page = useSelector((state) => state.post.searchPage)
   const is_login = useSelector((state) => state.user.is_login)
 
   let cookie = getCookie('x_auth')
@@ -26,19 +30,36 @@ const Header = (props) => {
     setSearchKeyword(e.target.value)
   }
   const handleChange = _.debounce(_handleChange, 300)
-
   return (
     <>
-      {cookie ? (
+      {cookie || is_login ? (
         <Grid border side_flex padding="16px">
           <Grid width="auto">
-            <Logo onClick={() => history.push('/')}>sout</Logo>
+            <Logo
+              onClick={() => {
+                window.location.reload()
+                history.push('/')
+              }}
+            >
+              sout
+            </Logo>
           </Grid>
           <Grid width="auto">
             <ContainerBox>
               <Grid width="">
                 {viewInput && (
-                  <InputBox onChange={handleChange} className={viewInput} />
+                  <>
+                    <ContainerBox>
+                      <InputBox onChange={handleChange} className={viewInput} />
+                      <SearchText
+                        onClick={() =>
+                          dispatch(postActions.getPostDB(page, searchKeyword))
+                        }
+                      >
+                        search
+                      </SearchText>
+                    </ContainerBox>
+                  </>
                 )}
               </Grid>
               <Button
@@ -73,6 +94,7 @@ const Header = (props) => {
                 margin="0px 0px 0px 10px"
                 _onClick={() => {
                   deleteCookie('x_auth')
+                  sessionStorage.removeItem('x_auth')
                   window.location.reload()
                 }}
               >
@@ -83,12 +105,28 @@ const Header = (props) => {
         </Grid>
       ) : (
         <Grid border side_flex padding="16px">
-          <Logo onClick={() => history.push('/')}>sout</Logo>
+          <Logo
+            onClick={() => {
+              window.location.reload()
+              history.push('/')
+            }}
+          >
+            sout
+          </Logo>
           <Grid width="auto">
             <ContainerBox>
               <Grid width="">
                 {viewInput && (
-                  <InputBox onChange={handleChange} className={viewInput} />
+                  <ContainerBox>
+                    <InputBox onChange={handleChange} className={viewInput} />
+                    <SearchText
+                      onClick={() =>
+                        dispatch(postActions.getPostDB(page, searchKeyword))
+                      }
+                    >
+                      search
+                    </SearchText>
+                  </ContainerBox>
                 )}
               </Grid>
               <Button
@@ -125,6 +163,12 @@ const Header = (props) => {
     </>
   )
 }
+
+const SearchText = styled.p`
+  color: #aaa;
+  cursor: pointer;
+  padding: 10px;
+`
 
 const Logo = styled.p`
   cursor: pointer;
