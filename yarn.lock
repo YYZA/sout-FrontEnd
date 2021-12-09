@@ -8471,6 +8471,13 @@ open@^7.0.2:
     is-docker "^2.0.0"
     is-wsl "^2.1.1"
 
+opengraph-react@^1.3.12:
+  version "1.3.12"
+  resolved "https://registry.yarnpkg.com/opengraph-react/-/opengraph-react-1.3.12.tgz#a6e666afd5b17cb3a3d019f58d5fd4c1a2d21980"
+  integrity sha512-FOI7GLBr1nT7JkWjiGGnDrtJZs7vx/btHX/V9zywqaTOjjxrP4qOgC2jKm2m8sCTMniWPdTB7QWyymXlbxP9aA==
+  dependencies:
+    react "^16.10.2"
+
 opn@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/opn/-/opn-5.5.0.tgz#fc7164fab56d235904c51c3b27da6758ca3b9bfc"
@@ -10070,6 +10077,15 @@ react-youtube@^7.13.1:
     fast-deep-equal "3.1.3"
     prop-types "15.7.2"
     youtube-player "5.5.2"
+
+react@^16.10.2:
+  version "16.14.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
+  integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
 
 react@^17.0.2:
   version "17.0.2"
