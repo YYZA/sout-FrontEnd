@@ -58,7 +58,7 @@ const deletePostDB = (post_id) => {
   }
 }
 
-const editPostDB = (content, url, post_id, post) => {
+const editPostDB = (content, url, post_id) => {
   return function (dispatch, getState, { history }) {
     const cookie = getCookie('x_auth')
     axios
@@ -72,7 +72,7 @@ const editPostDB = (content, url, post_id, post) => {
         }
       )
       .then((res) => {
-        dispatch(addPost(content, url))
+        dispatch(editPost(post_id))
       })
   }
 }

@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { CircularProgress } from '@mui/material'
 import { Grid } from '../elements'
 import styled from 'styled-components'
+import { getCookie } from '../shared/Cookie'
 
 const KakaoAuthHandle = (props) => {
   useEffect(() => {
@@ -12,7 +13,9 @@ const KakaoAuthHandle = (props) => {
         .get(`http://localhost:8080/user/kakao/callback?code=${code}`)
         .then((res) => {
           document.cookie = 'x_auth' + '=' + res.headers.authorization
-          props.history.push('/')
+          if (getCookie('x_auth')) {
+            props.history.push('/')
+          }
         })
     }
     kakaoLogin()

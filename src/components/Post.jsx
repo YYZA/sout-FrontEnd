@@ -12,6 +12,7 @@ const Main = (props) => {
   let cookie = getCookie('x_auth')
   const is_login = useSelector((state) => state.user.is_login)
   const dispatch = useDispatch()
+
   return (
     <React.Fragment>
       {!cookie && !is_login ? (
@@ -122,7 +123,13 @@ const Main = (props) => {
             {props.commentList.length === 0
               ? ''
               : props.commentList.map((el, i) => {
-                  return <CommentList key={i} {...el}></CommentList>
+                  return (
+                    <CommentList
+                      postId={props.postId}
+                      key={i}
+                      {...el}
+                    ></CommentList>
+                  )
                 })}
           </Grid>
         </Grid>

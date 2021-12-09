@@ -1,21 +1,35 @@
-import { createAction, handleActions } from "redux-actions";
-import axios from "axios";
-import { getCookie } from "../../shared/Cookie";
-import { produce } from "immer";
+import { createAction, handleActions } from 'redux-actions'
+import axios from 'axios'
+import { getCookie } from '../../shared/Cookie'
+import { produce } from 'immer'
 
-const ADD_COMMENT = "ADD_COMMENT";
+const ADD_COMMENT = 'ADD_COMMENT'
 
-const addComment = createAction(ADD_COMMENT, (content) => ({ content }));
+const addComment = createAction(ADD_COMMENT, (content) => ({ content }))
 
 const initialState = {
   comment: null,
   comments: [],
-};
+}
 
-const cookie = getCookie("x_auth");
+const deleteCommentDB = (postId, commentId) => {
+  return function (dispatch, getState, { history }) {
+    const cookie = getCookie('x_auth')
+    axios
+      .delete(`http://localhost:8080/api/${postId}/${commentId}`, {
+        headers: {
+          Authorization: cookie,
+        },
+      })
+      .then((res) => {
+        console.log(res)
+      })
+  }
+}
+
 const addCommentDB = (postId, content) => {
   return function (dispatch, getState, { history }) {
-    const cookie = getCookie("x_auth");
+    const cookie = getCookie('x_auth')
     axios
       .post(
         `http://localhost:8080/api/${postId}/comment`,
@@ -27,24 +41,25 @@ const addCommentDB = (postId, content) => {
         }
       )
       .then((res) => {
-        dispatch(addComment(res.config.data));
-      });
-    history.push("/");
-  };
-};
+        dispatch(addComment(res.config.data))
+      })
+    history.push('/')
+  }
+}
 
 export default handleActions(
   {
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.comment = action.payload.content;
+        draft.comment = action.payload.content
       }),
   },
   initialState
-);
+)
 
 const actionCreators = {
   addCommentDB,
-};
+  deleteCommentDB,
+}
 
-export { actionCreators };
+export { actionCreators }
