@@ -3,6 +3,9 @@ import { Grid } from '../elements'
 import Post from '../components/Post'
 import { useDispatch, useSelector } from 'react-redux'
 import { actionCreators } from '../redux/modules/post'
+import axios from 'axios'
+import { getCookie } from '../shared/Cookie'
+import { userActions } from '../redux/modules/user'
 
 const Main = (props) => {
   const post_list = useSelector((state) => state)
@@ -11,7 +14,24 @@ const Main = (props) => {
 
   useEffect(() => {
     dispatch(actionCreators.getPostDB())
-  }, [dispatch])
+    const cookie = getCookie('x_auth')
+    const fetchUser = async () => {
+      await axios
+        .post(
+          'http://localhost:8080/userinfo',
+          {},
+          {
+            headers: { Authorization: cookie },
+          }
+        )
+        .then((res) => {
+          dispatch(userActions.setUser(res.data))
+        })
+    }
+    if (user.length === 0 && cookie !== undefined) {
+      fetchUser()
+    }
+  }, [dispatch, user.length, props.history])
 
   return (
     <React.Fragment>
