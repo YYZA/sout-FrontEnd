@@ -11,7 +11,6 @@ const KakaoAuthHandle = (props) => {
       await axios
         .get(`http://localhost:8080/user/kakao/callback?code=${code}`)
         .then((res) => {
-          console.log(res)
           document.cookie = 'x_auth' + '=' + res.headers.authorization
           props.history.push('/')
         })
