@@ -37,7 +37,7 @@ const Main = (props) => {
     <React.Fragment>
       <Grid flex>
         {post_list.post.list.map((p, idx) => {
-          if (p.email === user.username) {
+          if (p.email === user.email) {
             return (
               <Grid key={idx}>
                 <Post {...p} is_me />

@@ -47,11 +47,15 @@ const deletePostDB = (post_id) => {
   return function (dispatch, getState, { history }) {
     const cookie = getCookie('x_auth')
     axios
-      .delete(`http://localhost:8080/api/${post_id}`, {
-        headers: {
-          Authorization: cookie,
-        },
-      })
+      .delete(
+        `http://localhost:8080/api/${post_id}`,
+        {},
+        {
+          headers: {
+            Authorization: cookie,
+          },
+        }
+      )
       .then((res) => {
         dispatch(deletePost(post_id))
       })

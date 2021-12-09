@@ -18,7 +18,9 @@ const UserProfile = (props) => {
           headers: { Authorization: cookie },
         }
       )
-      .then((res) => setUserInfo(res.data))
+      .then((res) => {
+        setUserInfo(res.data)
+      })
   })
   // console.log(modifyInfo === undefined) 입력 안 하면 true
   const mutation = useMutation(async () => {
@@ -39,7 +41,7 @@ const UserProfile = (props) => {
         headers: { Authorization: cookie },
       })
       .then((res) => {
-        console.log(res)
+        alert('수정이 완료되었습니다.')
       })
   })
 
