@@ -1,12 +1,12 @@
-import React from "react";
-import { Input, Button, Grid } from "../elements/index";
-import { useDispatch } from "react-redux";
-import { actionCreators } from "../redux/modules/post";
+import React from 'react'
+import { Input, Button, Grid } from '../elements/index'
+import { useDispatch } from 'react-redux'
+import { actionCreators } from '../redux/modules/post'
 
 const PostWrite = (props) => {
-  const [content, setContent] = React.useState("");
-  const [url, setUrl] = React.useState("");
-  const dispatch = useDispatch();
+  const [content, setContent] = React.useState('')
+  const [url, setUrl] = React.useState('')
+  const dispatch = useDispatch()
 
   return (
     <React.Fragment>
@@ -22,7 +22,7 @@ const PostWrite = (props) => {
       >
         <Input
           _onChange={(e) => {
-            setContent(e.target.value);
+            setContent(e.target.value)
           }}
           multiLine
           label="내용"
@@ -30,15 +30,14 @@ const PostWrite = (props) => {
         ></Input>
         <Input
           _onChange={(e) => {
-            setUrl(e.target.value);
+            setUrl(e.target.value)
           }}
           label="업로드 링크"
           placeholder="도움이 되는 링크를 공유해주세요!"
         ></Input>
         <Button
           _onClick={() => {
-            dispatch(actionCreators.addPostDB(content, url));
-            console.log(content, url);
+            dispatch(actionCreators.addPostDB(content, url))
           }}
           color="#262223"
           bg="#ddc6b6"
@@ -48,7 +47,7 @@ const PostWrite = (props) => {
         </Button>
       </Grid>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default PostWrite;
+export default PostWrite

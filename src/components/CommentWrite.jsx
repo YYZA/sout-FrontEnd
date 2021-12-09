@@ -1,17 +1,16 @@
-import React from "react";
-import styled from "styled-components";
-import { Button, Grid, Input } from "../elements";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { actionCreators as commentCreators } from "../redux/modules/comment";
+import React from 'react'
+import styled from 'styled-components'
+import { Button, Grid, Input } from '../elements'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { actionCreators as commentCreators } from '../redux/modules/comment'
 
 const CommentWrite = (props) => {
-  const [content, setCotentText] = React.useState();
-  const dispatch = useDispatch();
+  const [content, setCotentText] = React.useState()
+  const dispatch = useDispatch()
   const onChange = (e) => {
-    setCotentText(e.target.value);
-  };
-  console.log(props);
+    setCotentText(e.target.value)
+  }
 
   // const addComment = () => {
   //   axios.post("/comment", { content: content }).then((res) => {
@@ -31,22 +30,21 @@ const CommentWrite = (props) => {
         <Button
           width="10%"
           _onClick={() => {
-            window.location.reload();
-            dispatch(commentCreators.addCommentDB(`${props.postId}`, content));
+            dispatch(commentCreators.addCommentDB(`${props.postId}`, content))
           }}
         >
-          <span style={{ fontSize: "20px" }}>
+          <span style={{ fontSize: '20px' }}>
             <u>✏️</u>
           </span>
         </Button>
       </List>
     </React.Fragment>
-  );
-};
+  )
+}
 
 const List = styled.div`
   display: flex;
   padding: 0px;
-`;
+`
 
-export default CommentWrite;
+export default CommentWrite

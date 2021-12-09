@@ -12,7 +12,7 @@ const UserProfile = (props) => {
   const { isLoading, error, data } = useQuery('userinfo', async () => {
     await axios
       .post(
-        '/userinfo',
+        'http://localhost:8080/userinfo',
         {},
         {
           headers: { Authorization: cookie },
@@ -35,7 +35,7 @@ const UserProfile = (props) => {
     }
 
     await axios
-      .put('/setting/profile', newUserInfo, {
+      .put('http://localhost:8080/setting/profile', newUserInfo, {
         headers: { Authorization: cookie },
       })
       .then((res) => {

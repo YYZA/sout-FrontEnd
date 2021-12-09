@@ -1,16 +1,16 @@
-import React from "react";
-import { Input, Button, Grid } from "../elements/index";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators } from "../redux/modules/post";
-import { history } from "../redux/configureStore";
+import React from 'react'
+import { Input, Button, Grid } from '../elements/index'
+import { useDispatch, useSelector } from 'react-redux'
+import { actionCreators } from '../redux/modules/post'
+import { history } from '../redux/configureStore'
 
 const PostEdit = (props) => {
-  const [content, setContent] = React.useState("");
-  const [url, setUrl] = React.useState("");
-  const dispatch = useDispatch();
-  let post_id = props.location.props.props.postId;
-  let content_ex = props.location.props.props.content;
-  console.log(props);
+  const [content, setContent] = React.useState('')
+  const [url, setUrl] = React.useState('')
+  const dispatch = useDispatch()
+  let post_id = props.location.props.props.postId
+  let content_ex = props.location.props.props.content
+
   return (
     <React.Fragment>
       <Grid
@@ -25,7 +25,7 @@ const PostEdit = (props) => {
       >
         <Input
           _onChange={(e) => {
-            setContent(e.target.value);
+            setContent(e.target.value)
           }}
           multiLine
           label="내용"
@@ -33,15 +33,15 @@ const PostEdit = (props) => {
         ></Input>
         <Input
           _onChange={(e) => {
-            setUrl(e.target.value);
+            setUrl(e.target.value)
           }}
           label="업로드 링크"
           placeholder="도움이 되는 링크를 공유해주세요!"
         ></Input>
         <Button
           _onClick={() => {
-            history.replace("/");
-            dispatch(actionCreators.editPostDB(content, url, post_id));
+            history.replace('/')
+            dispatch(actionCreators.editPostDB(content, url, post_id))
           }}
           color="#262223"
           bg="#ddc6b6"
@@ -51,7 +51,7 @@ const PostEdit = (props) => {
         </Button>
       </Grid>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default PostEdit;
+export default PostEdit
