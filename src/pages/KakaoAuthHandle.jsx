@@ -12,14 +12,14 @@ const KakaoAuthHandle = (props) => {
       await axios
         .get(`http://localhost:8080/user/kakao/callback?code=${code}`)
         .then((res) => {
-          document.cookie = 'x_auth' + '=' + res.headers.authorization
+          sessionStorage.setItem('x_auth', res.headers.authorization)
           if (getCookie('x_auth')) {
-            props.history.push('/')
+            props.history.replace('/')
           }
         })
     }
     kakaoLogin()
-  })
+  }, [props.history])
   return (
     <>
       <Container>

@@ -34,10 +34,6 @@ const SignUp = (props) => {
         password: data.passwordCheck,
       })
       .then((res) => history.push('/signin'))
-
-    // apis
-    //   .signup(data.emil, data.nickname, data.interest, data.password)
-    //   .then((res) => console.log(res))
   }
 
   return (
@@ -98,10 +94,13 @@ const SignUp = (props) => {
               <Text>Password</Text>
               <InputBox
                 placeholder="패스워드를 입력해주세요!"
-                {...register('password', { required: true, min: 4 })}
+                {...register('password', { required: true, minLength: 4 })}
               />
               {errors.password?.type === 'required' && (
                 <ErrorText>패스워드를 입력하세요.</ErrorText>
+              )}
+              {errors.password?.type === 'minLength' && (
+                <ErrorText>패스워드를 4자 이상 입력해주세요.</ErrorText>
               )}
             </Grid>
             <Grid margin="10px 0px 0px 0px">
@@ -110,10 +109,13 @@ const SignUp = (props) => {
                 id="passwordCheck"
                 placeholder="패스워드를 확인해주세요!"
                 name="password_repeat"
-                {...register('passwordCheck', { required: true, min: 4 })}
+                {...register('passwordCheck', { required: true, minLength: 4 })}
               />
               {errors.passwordCheck?.type === 'required' && (
                 <ErrorText>패스워드 확인을 입력하세요.</ErrorText>
+              )}
+              {errors.passwordCheck?.type === 'minLength' && (
+                <ErrorText>패스워드를 4자 이상 입력해주세요.</ErrorText>
               )}
               <ErrorText id="temp-error"></ErrorText>
             </Grid>
