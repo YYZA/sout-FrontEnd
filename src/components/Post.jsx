@@ -119,8 +119,12 @@ const Main = (props) => {
           <Grid padding="0px 16px">
             <CommentWrite {...props}></CommentWrite>
             <hr style={{ width: '100%', margin: '5px 0px' }} />
+            {props.commentList.length === 0
+              ? ''
+              : props.commentList.map((el, i) => {
+                  return <CommentList key={i} {...el}></CommentList>
+                })}
           </Grid>
-          <CommentList {...props}></CommentList>
         </Grid>
       )}
     </React.Fragment>

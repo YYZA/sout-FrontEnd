@@ -27,7 +27,6 @@ const cookie = getCookie('x_auth')
 const addPostDB = (content, url) => {
   return async function (dispatch, getState, { history }) {
     const cookie = getCookie('x_auth')
-
     await axios
       .post(
         'http://localhost:8080/newpost',
@@ -39,7 +38,7 @@ const addPostDB = (content, url) => {
         }
       )
       .then((res) => {
-        dispatch(addPost(res))
+        dispatch(addPost(content, url))
       })
     history.push('/')
   }
@@ -73,7 +72,7 @@ const editPostDB = (content, url, post_id, post) => {
         }
       )
       .then((res) => {
-        dispatch(editPost(post_id, { ...post }))
+        dispatch(addPost(content, url))
       })
   }
 }
@@ -113,7 +112,13 @@ export default handleActions(
       }),
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.push(action.payload.content)
+        const newObj = {
+          nickname: 'asd',
+          content: action.payload.content,
+          postId: new Date().getTime(),
+          commentList: [],
+        }
+        draft.list.push(newObj)
       }),
   },
   initialState
