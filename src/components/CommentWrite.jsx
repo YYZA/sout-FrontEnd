@@ -31,6 +31,7 @@ const CommentWrite = (props) => {
         <Button
           width="10%"
           _onClick={() => {
+            window.location.reload();
             dispatch(commentCreators.addCommentDB(`${props.postId}`, content));
           }}
         >

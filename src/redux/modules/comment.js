@@ -15,9 +15,10 @@ const initialState = {
 const cookie = getCookie("x_auth");
 const addCommentDB = (postId, content) => {
   return function (dispatch, getState, { history }) {
+    const cookie = getCookie("x_auth");
     axios
       .post(
-        `/${postId}/comment`,
+        `http://localhost:8080/api/${postId}/comment`,
         { content },
         {
           headers: {

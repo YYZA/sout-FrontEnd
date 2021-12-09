@@ -3,6 +3,7 @@ import { Button, Grid, Input, Text } from "../elements";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import CommentWrite from "./CommentWrite";
+import CommentList from "./CommentList";
 import { history } from "../redux/configureStore";
 import { getCookie } from "../shared/Cookie";
 import { actionCreators } from "../redux/modules/post";
@@ -11,6 +12,7 @@ const Main = (props) => {
   let cookie = getCookie("x_auth");
   const is_login = useSelector((state) => state.user.is_login);
   const dispatch = useDispatch();
+  console.log(props.postId);
 
   return (
     <React.Fragment>
@@ -45,6 +47,10 @@ const Main = (props) => {
               {props.content}
             </Text>
             <link href={props.url} />
+          </Grid>
+          <Grid padding="16px">
+            <hr style={{ width: "100%", margin: "5px 0px" }} />
+            <CommentList {...props}></CommentList>
           </Grid>
         </Grid>
       ) : (
@@ -114,6 +120,7 @@ const Main = (props) => {
             <CommentWrite {...props}></CommentWrite>
             <hr style={{ width: "100%", margin: "5px 0px" }} />
           </Grid>
+          <CommentList {...props}></CommentList>
         </Grid>
       )}
     </React.Fragment>
