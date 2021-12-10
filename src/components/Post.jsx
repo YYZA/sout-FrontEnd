@@ -34,7 +34,7 @@ const Main = (props) => {
           max_width="50vw"
           margin="20px auto"
           min_height="50%"
-          min_width="90%"
+          min_width="360px"
           padding="0px 0px"
         >
           <Grid padding="16px">
@@ -93,7 +93,7 @@ const Main = (props) => {
           max_width="50vw"
           margin="20px auto"
           min_height="50%"
-          min_width="90%"
+          min_width="360px"
           padding="0px 0px"
         >
           <Grid padding="16px">
