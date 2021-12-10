@@ -3,7 +3,7 @@ import Grid from "./Grid";
 import Text from "./Text";
 
 const Input = (props) => {
-  const { label, multiLine, placeholder, _onChange, value } = props;
+  const { label, multiLine, placeholder, _onChange } = props;
 
   if (multiLine) {
     return (
@@ -11,7 +11,6 @@ const Input = (props) => {
         {label && <Text>{label}</Text>}
         <TextareaBox
           rows={20}
-          value={value}
           placeholder={placeholder}
           onChange={_onChange}
         ></TextareaBox>
@@ -34,7 +33,6 @@ Input.defaultProps = {
   multiLine: false,
   placeholder: "",
   _onChange: () => {},
-  value: "",
 };
 const InputBox = styled.input`
   border-radius: 5px;
