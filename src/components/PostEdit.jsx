@@ -48,7 +48,7 @@ const PostEdit = (props) => {
         <Button
           _onClick={() => {
             history.replace("/");
-            dispatch(actionCreators.editPostDB(content, url, post_id));
+            dispatch(actionCreators.editPostDB(content_ex, url, post_id));
           }}
           color="#262223"
           bg="#ddc6b6"
