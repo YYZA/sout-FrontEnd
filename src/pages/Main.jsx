@@ -33,7 +33,6 @@ const Main = (props) => {
             dispatch(userActions.setUser(res.data))
           })
       } else if (authSession) {
-        console.log(authSession)
         await axios
           .post(
             'http://localhost:8080/userinfo',

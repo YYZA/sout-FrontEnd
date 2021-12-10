@@ -13,12 +13,6 @@ const CommentWrite = (props) => {
     setCotentText(e.target.value)
   }
 
-  // const addComment = () => {
-  //   axios.post("/comment", { content: content }).then((res) => {
-  //     console.log(res);
-  //   });
-  // };
-
   return (
     <React.Fragment>
       <List>
@@ -30,6 +24,7 @@ const CommentWrite = (props) => {
         />
         <Button
           width="10%"
+          height="50px"
           _onClick={() => {
             dispatch(
               commentCreators.addCommentDB(
@@ -40,9 +35,7 @@ const CommentWrite = (props) => {
             )
           }}
         >
-          <span style={{ fontSize: '20px' }}>
-            <u>✏️</u>
-          </span>
+          작성✏️
         </Button>
       </List>
     </React.Fragment>
@@ -51,6 +44,7 @@ const CommentWrite = (props) => {
 
 const List = styled.div`
   display: flex;
+  align-items: center;
   padding: 0px;
 `
 

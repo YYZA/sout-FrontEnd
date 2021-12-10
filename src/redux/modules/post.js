@@ -37,7 +37,9 @@ const editPost = createAction(EDIT_POST, (post_id, content, url) => ({
 const setIsNext = createAction(IS_NEXT, (is_next) => ({ is_next }))
 const addPage = createAction(ADD_PAGE, (page) => ({ page }))
 const setNewPost = createAction(SET_NEW_POST, (post) => ({ post }))
-const searchNext = createAction(SEARCH_NEXT, (search_next) => ({ search_next }))
+const searchNext = createAction(SEARCH_NEXT, (search_next) => ({
+  search_next,
+}))
 
 const initialState = {
   list: [],
@@ -62,7 +64,6 @@ const addPostDB = (content, url) => {
         }
       )
       .then((res) => {
-        console.log(res)
         dispatch(addPost(res.data))
       })
     history.push('/')
@@ -72,13 +73,16 @@ const deletePostDB = (post_id) => {
   return function (dispatch, getState, { history }) {
     const cookie = getCookie('x_auth')
     axios
-      .delete(`http://localhost:8080/api/${post_id}`, {
-        headers: {
-          Authorization: cookie,
-        },
-      })
+      .delete(
+        `http://localhost:8080/api/${post_id}`,
+
+        {
+          headers: {
+            Authorization: cookie,
+          },
+        }
+      )
       .then((res) => {
-        console.log(res)
         dispatch(deletePost(post_id))
       })
   }
@@ -113,7 +117,6 @@ const getPostDB = (page, keyword = null) => {
         })
         .then((res) => {
           dispatch(addPage(page))
-          console.log(res)
           if (res.data.length === 3) {
             dispatch(searchNext(true))
             dispatch(setNewPost(res.data))
@@ -197,7 +200,6 @@ export default handleActions(
       }),
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload)
         draft.list.map((el) => {
           return el.postId === parseInt(action.payload.postId)
             ? el.commentList.push({

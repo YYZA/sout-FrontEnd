@@ -8,8 +8,9 @@ const PostEdit = (props) => {
   const [content, setContent] = React.useState('')
   const [url, setUrl] = React.useState('')
   const dispatch = useDispatch()
-  let post_id = props.location.props.props.postId
-  let content_ex = props.location.props.props.content
+
+  let post_id = props.location.state.state.postId
+  let content_ex = props.location.state.state.content
 
   return (
     <React.Fragment>

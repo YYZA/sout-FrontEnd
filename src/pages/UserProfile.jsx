@@ -22,7 +22,6 @@ const UserProfile = (props) => {
         setUserInfo(res.data)
       })
   })
-  // console.log(modifyInfo === undefined) 입력 안 하면 true
   const mutation = useMutation(async () => {
     const cookie = getCookie('x_auth')
     if (modifyInfo === undefined) {
