@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import styled, { keyframes } from 'styled-components'
-import { Button, Grid, Text } from '../elements'
+import { Button, Grid } from '../elements'
 import { history } from '../redux/configureStore'
 import { deleteCookie, getCookie } from '../shared/Cookie'
 import { actionCreators as postActions } from '../redux/modules/post'
@@ -52,9 +52,10 @@ const Header = (props) => {
                     <ContainerBox>
                       <InputBox onChange={handleChange} className={viewInput} />
                       <SearchText
-                        onClick={() =>
+                        onClick={() => {
+                          dispatch(postActions.searchLoading(false))
                           dispatch(postActions.getPostDB(page, searchKeyword))
-                        }
+                        }}
                       >
                         search
                       </SearchText>
@@ -120,9 +121,10 @@ const Header = (props) => {
                   <ContainerBox>
                     <InputBox onChange={handleChange} className={viewInput} />
                     <SearchText
-                      onClick={() =>
+                      onClick={() => {
+                        dispatch(postActions.searchLoading(false))
                         dispatch(postActions.getPostDB(page, searchKeyword))
-                      }
+                      }}
                     >
                       search
                     </SearchText>

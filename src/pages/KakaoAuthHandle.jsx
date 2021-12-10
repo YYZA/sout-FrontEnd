@@ -1,18 +1,15 @@
-
 import axios from 'axios'
 import { useEffect } from 'react'
 import { CircularProgress } from '@mui/material'
 import styled from 'styled-components'
 
-
 const KakaoAuthHandle = (props) => {
   useEffect(() => {
-    let code = new URL(window.location.href).searchParams.get("code");
+    let code = new URL(window.location.href).searchParams.get('code')
     const kakaoLogin = async () => {
       await axios
         .get(`http://localhost:8080/user/kakao/callback?code=${code}`)
         .then((res) => {
-
           sessionStorage.setItem('x_auth', res.headers.authorization)
           props.history.replace('/')
         })
@@ -26,10 +23,10 @@ const KakaoAuthHandle = (props) => {
         <CircularProgress />
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default KakaoAuthHandle;
+export default KakaoAuthHandle
 
 const Container = styled.div`
   width: 100vw;
@@ -37,4 +34,4 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
+`

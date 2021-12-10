@@ -1,7 +1,6 @@
-import { createAction, handleActions } from 'redux-actions'
+import { handleActions } from 'redux-actions'
 import axios from 'axios'
 import { getCookie } from '../../shared/Cookie'
-import { produce } from 'immer'
 import { actionCreators as postActions } from './post'
 
 const initialState = {
