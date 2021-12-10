@@ -47,14 +47,10 @@ const Main = (props) => {
             dispatch(userActions.setUser(res.data));
           });
       }
-<<<<<<< HEAD
     };
-=======
-    }
     if (authSession) {
-      document.cookie = 'x_auth' + '=' + authSession
+      document.cookie = "x_auth" + "=" + authSession;
     }
->>>>>>> ad47fb0efea02902e507f91525a062bdc11d6ef2
 
     if (
       (user.length === 0 && authSession !== null) ||

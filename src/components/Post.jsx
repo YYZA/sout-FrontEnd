@@ -16,7 +16,7 @@ const Main = (props) => {
   const is_login = useSelector((state) => state.user.is_login);
   const dispatch = useDispatch();
 
-  console.log();
+  console.log(props);
   return (
     <React.Fragment>
       {!(cookie || authSession) ? (
