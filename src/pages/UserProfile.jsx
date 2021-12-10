@@ -9,6 +9,14 @@ const UserProfile = (props) => {
   const cookie = getCookie('x_auth')
   const [userInfo, setUserInfo] = useState({})
   const [modifyInfo, setModifyInfo] = useState()
+
+  useEffect(() => {
+    if (!cookie) {
+      alert('로그인 후 이용해주세요.')
+      window.location.href = '/'
+    }
+  }, [])
+
   const { isLoading, error, data } = useQuery('userinfo', async () => {
     await axios
       .post(
