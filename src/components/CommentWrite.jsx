@@ -2,12 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button, Grid, Input } from '../elements'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { actionCreators as commentCreators } from '../redux/modules/comment'
 
 const CommentWrite = (props) => {
   const [content, setCotentText] = React.useState()
   const dispatch = useDispatch()
+  const user = useSelector((state) => state.user.user)
   const onChange = (e) => {
     setCotentText(e.target.value)
   }
@@ -30,7 +31,13 @@ const CommentWrite = (props) => {
         <Button
           width="10%"
           _onClick={() => {
-            dispatch(commentCreators.addCommentDB(`${props.postId}`, content))
+            dispatch(
+              commentCreators.addCommentDB(
+                `${props.postId}`,
+                content,
+                user.nickname
+              )
+            )
           }}
         >
           <span style={{ fontSize: '20px' }}>
