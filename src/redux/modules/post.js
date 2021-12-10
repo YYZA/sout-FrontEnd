@@ -12,14 +12,24 @@ const IS_NEXT = 'IS_NEXT'
 const ADD_PAGE = 'ADD_PAGE'
 const SET_NEW_POST = 'SET_NEW_POST'
 const SEARCH_NEXT = 'SEARCH_NEXT'
+const ADD_COMMENT = 'ADD_COMMENT'
+const DELETE_COMMENT = 'DELETE_COMMENT'
 
 const setPost = createAction(SET_POST, (post) => ({
   post,
 }))
 const addPost = createAction(ADD_POST, (content, url) => ({ content, url }))
+const addComment = createAction(ADD_COMMENT, (postId, comment) => ({
+  postId,
+  comment,
+}))
 const deletePost = createAction(DELETE_POST, (post_id) => ({ post_id }))
+const deleteComment = createAction(DELETE_COMMENT, (commentId, postId) => ({
+  commentId,
+  postId,
+}))
 const loading = createAction(LOADING, (is_loading) => ({ is_loading }))
-const editPost = createAction(EDIT_POST, (content, url, post_id) => ({
+const editPost = createAction(EDIT_POST, (post_id, content, url) => ({
   content,
   url,
   post_id,
@@ -88,7 +98,7 @@ const editPostDB = (content, url, post_id) => {
         }
       )
       .then((res) => {
-        dispatch(editPost(post_id))
+        dispatch(editPost(post_id, content, url))
       })
   }
 }
@@ -150,17 +160,20 @@ export default handleActions(
       }),
     [DELETE_POST]: (state, action) =>
       produce(state, (draft) => {
-        let idx = draft.list.findIndex(
-          (val) => val.id === action.payload.post_id
+        draft.list = draft.list.filter(
+          (el) => el.postId !== parseInt(action.payload.post_id)
         )
-        draft.list.splice(idx, 1)
-        // draft.list.push(...action.payload.post);
       }),
     [EDIT_POST]: (state, action) =>
       produce(state, (draft) => {
-        let idx = draft.list.findIndex((p) => p.id === action.payload.post_id)
-        draft.list[idx] = { ...draft.list[idx], ...action.payload.post }
-        console.log(draft.list[idx])
+        let idx = draft.list.findIndex(
+          (p) => p.postId === action.payload.post_id
+        )
+        draft.list[idx] = {
+          ...draft.list[idx],
+          content: action.payload.content,
+          url: action.payload.url,
+        }
       }),
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
@@ -182,6 +195,27 @@ export default handleActions(
       produce(state, (draft) => {
         draft.page = action.payload.page + 1
       }),
+    [ADD_COMMENT]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(action.payload)
+        draft.list.map((el) => {
+          return el.postId === parseInt(action.payload.postId)
+            ? el.commentList.push({
+                ...action.payload.comment,
+              })
+            : ''
+        })
+      }),
+    [DELETE_COMMENT]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list.map((el) =>
+          el.postId === parseInt(action.payload.postId)
+            ? (el.commentList = el.commentList.filter(
+                (e) => e.commentId !== parseInt(action.payload.commentId)
+              ))
+            : el
+        )
+      }),
   },
   initialState
 )
@@ -191,6 +225,8 @@ const actionCreators = {
   getPostDB,
   editPostDB,
   deletePostDB,
+  addComment,
+  deleteComment,
 }
 
 export { actionCreators }

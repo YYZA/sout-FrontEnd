@@ -2,10 +2,7 @@ import { createAction, handleActions } from 'redux-actions'
 import axios from 'axios'
 import { getCookie } from '../../shared/Cookie'
 import { produce } from 'immer'
-
-const ADD_COMMENT = 'ADD_COMMENT'
-
-const addComment = createAction(ADD_COMMENT, (content) => ({ content }))
+import { actionCreators as postActions } from './post'
 
 const initialState = {
   comment: null,
@@ -22,12 +19,12 @@ const deleteCommentDB = (postId, commentId) => {
         },
       })
       .then((res) => {
-        console.log(res)
+        dispatch(postActions.deleteComment(commentId, postId))
       })
   }
 }
 
-const addCommentDB = (postId, content) => {
+const addCommentDB = (postId, content, nickname) => {
   return function (dispatch, getState, { history }) {
     const cookie = getCookie('x_auth')
     axios
@@ -41,21 +38,13 @@ const addCommentDB = (postId, content) => {
         }
       )
       .then((res) => {
-        dispatch(addComment(res.config.data))
+        dispatch(postActions.addComment(postId, res.data))
       })
     history.push('/')
   }
 }
 
-export default handleActions(
-  {
-    [ADD_COMMENT]: (state, action) =>
-      produce(state, (draft) => {
-        draft.comment = action.payload.content
-      }),
-  },
-  initialState
-)
+export default handleActions({}, initialState)
 
 const actionCreators = {
   addCommentDB,

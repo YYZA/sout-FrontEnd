@@ -47,6 +47,9 @@ const Main = (props) => {
           })
       }
     }
+    if (authSession) {
+      document.cookie = 'x_auth' + '=' + authSession
+    }
 
     if (
       (user.length === 0 && authSession !== null) ||
