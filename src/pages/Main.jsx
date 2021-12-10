@@ -23,7 +23,7 @@ const Main = (props) => {
       if (cookie) {
         await axios
           .post(
-            'http://localhost:8080/userinfo',
+            'http://3.36.100.253/userinfo',
             {},
             {
               headers: { Authorization: cookie },
@@ -35,7 +35,7 @@ const Main = (props) => {
       } else if (authSession) {
         await axios
           .post(
-            'http://localhost:8080/userinfo',
+            'http://3.36.100.253/userinfo',
             {},
             {
               headers: { Authorization: authSession },

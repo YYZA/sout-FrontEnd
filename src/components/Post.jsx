@@ -10,6 +10,7 @@ import { getCookie } from '../shared/Cookie'
 import { actionCreators } from '../redux/modules/post'
 import OpengraphReactComponent from 'opengraph-react'
 import { actionCreators as postActions } from '../redux/modules/post'
+import { CircularProgress } from '@mui/material'
 
 const Main = (props) => {
   let cookie = getCookie('x_auth')
@@ -67,7 +68,7 @@ const Main = (props) => {
               <OpengraphReactComponent
                 site={props.url}
                 appId={'1aba8b2f-e731-40c6-b6fc-015032e76ed7	'}
-                loader={'loading'}
+                loader={<CircularProgress />}
                 size={'large'}
               />
             )}
@@ -159,7 +160,7 @@ const Main = (props) => {
               <OpengraphReactComponent
                 site={props.url}
                 appId={'1aba8b2f-e731-40c6-b6fc-015032e76ed7	'}
-                loader={'loading'}
+                loader={<CircularProgress />}
                 size={'small'}
               />
             )}

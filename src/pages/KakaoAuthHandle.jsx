@@ -8,7 +8,7 @@ const KakaoAuthHandle = (props) => {
     let code = new URL(window.location.href).searchParams.get('code')
     const kakaoLogin = async () => {
       await axios
-        .get(`http://localhost:8080/user/kakao/callback?code=${code}`)
+        .get(`http://3.36.100.253/user/kakao/callback?code=${code}`)
         .then((res) => {
           sessionStorage.setItem('x_auth', res.headers.authorization)
           props.history.replace('/')

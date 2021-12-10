@@ -61,7 +61,7 @@ const addPostDB = (content, url) => {
     const cookie = getCookie('x_auth')
     await axios
       .post(
-        'http://localhost:8080/newpost',
+        'http://3.36.100.253/newpost',
         { content, url },
         {
           headers: {
@@ -80,7 +80,7 @@ const deletePostDB = (post_id) => {
     const cookie = getCookie('x_auth')
     axios
       .delete(
-        `http://localhost:8080/api/${post_id}`,
+        `http://3.36.100.253/api/${post_id}`,
 
         {
           headers: {
@@ -99,7 +99,7 @@ const editPostDB = (content, url, post_id) => {
     const cookie = getCookie('x_auth')
     axios
       .put(
-        `http://localhost:8080/newpost/${post_id}`,
+        `http://3.36.100.253/newpost/${post_id}`,
         { content, url },
         {
           headers: {
@@ -118,7 +118,7 @@ const getPostDB = (page, keyword = null) => {
     dispatch(loading(true))
     if (keyword !== null) {
       await axios
-        .get('http://localhost:8080/search', {
+        .get('http://3.36.100.253/search', {
           params: { keyword: keyword, page: page, size: 3 },
         })
         .then((res) => {
@@ -133,7 +133,7 @@ const getPostDB = (page, keyword = null) => {
         })
     } else {
       await axios
-        .get('http://localhost:8080/', {
+        .get('http://3.36.100.253/', {
           params: { page: page, size: 3 },
           headers: {
             Authorization: cookie,

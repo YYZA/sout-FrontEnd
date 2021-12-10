@@ -12,7 +12,7 @@ const deleteCommentDB = (postId, commentId) => {
   return function (dispatch, getState, { history }) {
     const cookie = getCookie('x_auth')
     axios
-      .delete(`http://localhost:8080/api/${postId}/${commentId}`, {
+      .delete(`http://3.36.100.253/api/${postId}/${commentId}`, {
         headers: {
           Authorization: cookie,
         },
@@ -28,7 +28,7 @@ const addCommentDB = (postId, content, nickname) => {
     const cookie = getCookie('x_auth')
     axios
       .post(
-        `http://localhost:8080/api/${postId}/comment`,
+        `http://3.36.100.253/api/${postId}/comment`,
         { content },
         {
           headers: {

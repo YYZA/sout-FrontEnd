@@ -1,38 +1,38 @@
-import axios from "axios";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import styled from "styled-components";
-import { Button, Grid, Input, Text } from "../elements";
-import { userActions } from "../redux/modules/user";
-import { instance } from "../shared/api";
-import { KAKAO_AUTH_URL } from "../shared/kakaoAuth";
+import axios from 'axios'
+import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
+import styled from 'styled-components'
+import { Button, Grid, Input, Text } from '../elements'
+import { userActions } from '../redux/modules/user'
+import { instance } from '../shared/api'
+import { KAKAO_AUTH_URL } from '../shared/kakaoAuth'
 
 const SignIn = (props) => {
-  const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
+  const dispatch = useDispatch()
+  const { register, handleSubmit } = useForm()
 
   const onSubmit = async (data) => {
     await axios
-      .post("http://localhost:8080/user/login", {
+      .post('http://3.36.100.253/user/login', {
         username: data.email,
         password: data.password,
       })
       .then((res) => {
-        document.cookie = "x_auth" + "=" + res.headers.authorization;
+        document.cookie = 'x_auth' + '=' + res.headers.authorization
         dispatch(
           userActions.setUser({
             username: data.email,
           })
-        );
-        props.history.push("/");
+        )
+        props.history.push('/')
       })
       .catch((err) => {
-        alert("아이디 혹은 비밀번호를 확인하세요.");
-      });
-  };
+        alert('아이디 혹은 비밀번호를 확인하세요.')
+      })
+  }
   const kakaoAuth = () => {
-    window.location.href = KAKAO_AUTH_URL;
-  };
+    window.location.href = KAKAO_AUTH_URL
+  }
 
   return (
     <Grid
@@ -56,14 +56,14 @@ const SignIn = (props) => {
               <Text>E-mail</Text>
               <InputBox
                 placeholder="이메일을 입력해주세요!"
-                {...register("email")}
+                {...register('email')}
               />
             </Grid>
             <Grid margin="10px 0px 0px 0px">
               <Text>Password</Text>
               <InputBox
                 placeholder="패스워드를 입력해주세요!"
-                {...register("password")}
+                {...register('password')}
               />
             </Grid>
             <Grid margin="20px 0px 0px 0px">
@@ -72,7 +72,7 @@ const SignIn = (props) => {
                   로그인
                 </Button>
                 <Button
-                  _onClick={() => props.history.push("/signup")}
+                  _onClick={() => props.history.push('/signup')}
                   margin="0px 0px 0px 10px"
                   padding="10px"
                   width="100%"
@@ -90,8 +90,8 @@ const SignIn = (props) => {
         </KakaoButton>
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
 const InputBox = styled.input`
   border-radius: 5px;
@@ -100,20 +100,20 @@ const InputBox = styled.input`
   width: 100%;
   padding: 16px 10px;
   box-sizing: border-box;
-`;
+`
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
-`;
+`
 
 const KakaoButton = styled.button`
   border-radius: 5px;
   width: 100%;
   background: #fae100;
   padding: 10px;
-`;
+`
 
-export default SignIn;
+export default SignIn
