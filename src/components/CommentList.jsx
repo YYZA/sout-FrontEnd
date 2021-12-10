@@ -6,8 +6,9 @@ import { Button, Grid, Input, Text } from '../elements'
 import { useDispatch, useSelector } from 'react-redux'
 
 const CommentList = (props) => {
-  const state = useSelector((state) => state.user.user.email)
-  const isMe = state === props.email
+  console.log(props)
+  const state = useSelector((state) => state.user.user)
+  const isMe = state?.email === props.email || state?.username === props.email
   const dispatch = useDispatch()
 
   return (
