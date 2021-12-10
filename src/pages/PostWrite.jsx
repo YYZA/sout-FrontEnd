@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Input, Button, Grid } from '../elements/index'
 import { useDispatch } from 'react-redux'
 import { actionCreators } from '../redux/modules/post'
+import { getCookie } from '../shared/Cookie'
 
 const PostWrite = (props) => {
   const [content, setContent] = React.useState('')
   const [url, setUrl] = React.useState('')
   const dispatch = useDispatch()
+  const cookie = getCookie('x_auth')
+
+  useEffect(() => {
+    if (!cookie) {
+      alert('로그인 후 이용해주세요.')
+      window.location.href = '/'
+    }
+  }, [])
 
   return (
     <React.Fragment>
