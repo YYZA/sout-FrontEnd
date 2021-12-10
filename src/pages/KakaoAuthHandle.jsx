@@ -1,9 +1,9 @@
-import axios from "axios";
-import { useEffect } from "react";
-import { CircularProgress } from "@mui/material";
-import { Grid } from "../elements";
-import styled from "styled-components";
-import { getCookie } from "../shared/Cookie";
+
+import axios from 'axios'
+import { useEffect } from 'react'
+import { CircularProgress } from '@mui/material'
+import styled from 'styled-components'
+
 
 const KakaoAuthHandle = (props) => {
   useEffect(() => {
@@ -12,12 +12,14 @@ const KakaoAuthHandle = (props) => {
       await axios
         .get(`http://localhost:8080/user/kakao/callback?code=${code}`)
         .then((res) => {
-          sessionStorage.setItem("x_auth", res.headers.authorization);
-          props.history.replace("/");
-        });
-    };
-    kakaoLogin();
-  }, [props.history]);
+
+          sessionStorage.setItem('x_auth', res.headers.authorization)
+          props.history.replace('/')
+        })
+    }
+    kakaoLogin()
+  }, [props.history])
+
   return (
     <>
       <Container>
