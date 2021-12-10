@@ -3,14 +3,15 @@ import Grid from "./Grid";
 import Text from "./Text";
 
 const Input = (props) => {
-  const { label, multiLine, placeholder, _onChange } = props;
+  const { label, multiLine, placeholder, _onChange, value } = props;
 
   if (multiLine) {
     return (
       <Grid>
         {label && <Text>{label}</Text>}
         <TextareaBox
-          rows={10}
+          rows={20}
+          value={value}
           placeholder={placeholder}
           onChange={_onChange}
         ></TextareaBox>
@@ -33,6 +34,7 @@ Input.defaultProps = {
   multiLine: false,
   placeholder: "",
   _onChange: () => {},
+  value: "",
 };
 const InputBox = styled.input`
   border-radius: 5px;
@@ -46,7 +48,7 @@ const InputBox = styled.input`
 const TextareaBox = styled.textarea`
   border-radius: 5px;
   margin: 10px 0px;
-  color: #ddc6b6;
+  color: black;
   border: 2px solid #ddc6b6;
   width: 100%;
   padding: 16px 10px;
