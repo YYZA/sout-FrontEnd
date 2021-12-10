@@ -13,12 +13,6 @@ const CommentWrite = (props) => {
     setCotentText(e.target.value);
   };
 
-  // const addComment = () => {
-  //   axios.post("/comment", { content: content }).then((res) => {
-  //     console.log(res);
-  //   });
-  // };
-
   return (
     <React.Fragment>
       <List>
