@@ -116,7 +116,7 @@ const Main = (props) => {
                         onClick={() => {
                           history.push({
                             pathname: "/edit",
-                            state: { props: props },
+                            state: { state: props },
                           });
                         }}
                       >
