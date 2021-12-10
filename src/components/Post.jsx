@@ -112,7 +112,6 @@ const Main = (props) => {
                       <UiButton
                         size="small"
                         variant="outlined"
-                        href="#outlined-buttons"
                         onClick={() => {
                           history.push({
                             pathname: "/edit",
