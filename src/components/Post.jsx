@@ -63,13 +63,14 @@ const Main = (props) => {
             <Text color="black" bold size="36px">
               {props.content}
             </Text>
-            <OpengraphReactComponent
-              site={props.url}
-              appId={'1aba8b2f-e731-40c6-b6fc-015032e76ed7	'}
-              loader={'loading'}
-              size={'small'}
-              timeout
-            />
+            {search_loading && (
+              <OpengraphReactComponent
+                site={props.url}
+                appId={'1aba8b2f-e731-40c6-b6fc-015032e76ed7	'}
+                loader={'loading'}
+                size={'large'}
+              />
+            )}
             <hr style={{ width: '100%', margin: '5px 0px' }} />
             {props.commentList.length === 0
               ? ''
