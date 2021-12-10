@@ -10,8 +10,9 @@ const CommentWrite = (props) => {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user.user)
   const onChange = (e) => {
-    setCotentText(e.target.value)
-  }
+    setCotentText(e.target.value);
+  };
+
 
   return (
     <React.Fragment>

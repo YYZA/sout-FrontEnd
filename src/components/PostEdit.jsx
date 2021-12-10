@@ -5,12 +5,13 @@ import { actionCreators } from '../redux/modules/post'
 import { history } from '../redux/configureStore'
 
 const PostEdit = (props) => {
-  const [content, setContent] = React.useState('')
-  const [url, setUrl] = React.useState('')
-  const dispatch = useDispatch()
 
-  let post_id = props.location.state.state.postId
-  let content_ex = props.location.state.state.content
+  const [content, setContent] = React.useState("");
+  const [url, setUrl] = React.useState("");
+  const dispatch = useDispatch();
+  let post_id = props.location.state.state.postId;
+  let content_ex = props.location.state.state.content;
+
 
   return (
     <React.Fragment>

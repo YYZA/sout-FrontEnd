@@ -112,9 +112,11 @@ const Main = (props) => {
                         variant="outlined"
                         onClick={() => {
                           history.push({
-                            pathname: '/edit',
+
+                            pathname: "/edit",
                             state: { state: props },
-                          })
+                          });
+
                         }}
                       >
                         Edit
