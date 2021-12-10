@@ -8,7 +8,6 @@ const PostEdit = (props) => {
   const [content, setContent] = React.useState("");
   const [url, setUrl] = React.useState("");
   const dispatch = useDispatch();
-  console.log(props);
   let post_id = props.location.state.state.postId;
   let content_ex = props.location.state.state.content;
 
