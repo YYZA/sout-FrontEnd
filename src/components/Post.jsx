@@ -1,27 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { Button, Grid, Input, Text } from "../elements";
-import UiButton from "@mui/material/Button";
-import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import CommentWrite from "./CommentWrite";
-import CommentList from "./CommentList";
-import { history } from "../redux/configureStore";
-import { getCookie } from "../shared/Cookie";
-import { actionCreators } from "../redux/modules/post";
-import OpengraphReactComponent from "opengraph-react";
-import { actionCreators as postActions } from "../redux/modules/post";
+import React, { useEffect, useState } from 'react'
+import { Button, Grid, Input, Text } from '../elements'
+import UiButton from '@mui/material/Button'
+import styled from 'styled-components'
+import { useDispatch, useSelector } from 'react-redux'
+import CommentWrite from './CommentWrite'
+import CommentList from './CommentList'
+import { history } from '../redux/configureStore'
+import { getCookie } from '../shared/Cookie'
+import { actionCreators } from '../redux/modules/post'
+import OpengraphReactComponent from 'opengraph-react'
+import { actionCreators as postActions } from '../redux/modules/post'
+import { CircularProgress } from '@mui/material'
 
 const Main = (props) => {
-  let cookie = getCookie("x_auth");
-  const authSession = sessionStorage.getItem("x_auth");
-  const is_login = useSelector((state) => state.user.is_login);
-  const search_loading = useSelector((state) => state.post.search_loading);
-  const dispatch = useDispatch();
+  let cookie = getCookie('x_auth')
+  const authSession = sessionStorage.getItem('x_auth')
+  const is_login = useSelector((state) => state.user.is_login)
+  const search_loading = useSelector((state) => state.post.search_loading)
+  const dispatch = useDispatch()
   useEffect(() => {
     if (search_loading === false) {
-      dispatch(postActions.searchLoading(true));
+      dispatch(postActions.searchLoading(true))
     }
-  });
+  })
 
   return (
     <React.Fragment>
@@ -41,12 +42,12 @@ const Main = (props) => {
             <Grid width="auto">
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}
               >
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                   <ImageCircle src={props.user_image} />
                   <Text color="black" bold>
                     {props.nickname}/ {props.interest}
@@ -54,7 +55,7 @@ const Main = (props) => {
                 </div>
               </div>
             </Grid>
-            <hr style={{ width: "100%", margin: "5px 0px" }} />
+            <hr style={{ width: '100%', margin: '5px 0px' }} />
             <Grid width="auto" margin="10px 0px">
               <Text color="black">{props.modifiedAt}</Text>
             </Grid>
@@ -65,25 +66,29 @@ const Main = (props) => {
             </Text>
             <div
               style={{
-                margin: "20px 0px 0px 0px",
-                overflow: "auto",
-                borderRadius: "5px",
-                background: "#fff",
-                padding: "5px",
+                margin: '20px 0px 0px 0px',
+                height: '25vh',
+                overflow: 'auto',
+                borderRadius: '5px',
+                background: '#fff',
+                padding: '5px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
               {search_loading && (
                 <OpengraphReactComponent
                   site={props.url}
-                  appId={"1aba8b2f-e731-40c6-b6fc-015032e76ed7	"}
-                  loader={"loading"}
-                  size={"small"}
+                  appId={'1aba8b2f-e731-40c6-b6fc-015032e76ed7	'}
+                  loader={<CircularProgress />}
+                  size={'small'}
                 />
               )}
             </div>
-            <hr style={{ width: "100%", margin: "5px 0px" }} />
+            <hr style={{ width: '100%', margin: '5px 0px' }} />
             {props.commentList.length === 0
-              ? ""
+              ? ''
               : props.commentList.map((el, i) => {
                   return (
                     <CommentList
@@ -91,7 +96,7 @@ const Main = (props) => {
                       key={i}
                       {...el}
                     ></CommentList>
-                  );
+                  )
                 })}
           </Grid>
         </Grid>
@@ -111,20 +116,20 @@ const Main = (props) => {
             <Grid width="auto">
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}
               >
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                   <ImageCircle src={props.user_image} />
                   <Text color="black" bold>
                     {props.nickname}/ {props.interest}
                   </Text>
                 </div>
                 {props.is_me && (
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <div style={{ margin: "0px 5px" }}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <div style={{ margin: '0px 5px' }}>
                       <UiButton
                         size="small"
                         variant="outlined"
@@ -132,7 +137,7 @@ const Main = (props) => {
                         onClick={() => {
                           dispatch(
                             actionCreators.deletePostDB(`${props.postId}`)
-                          );
+                          )
                         }}
                       >
                         Delete
@@ -144,9 +149,9 @@ const Main = (props) => {
                         variant="outlined"
                         onClick={() => {
                           history.push({
-                            pathname: "/edit",
+                            pathname: '/edit',
                             state: { state: props },
-                          });
+                          })
                         }}
                       >
                         Edit
@@ -156,7 +161,7 @@ const Main = (props) => {
                 )}
               </div>
             </Grid>
-            <hr style={{ width: "100%", margin: "5px 0px" }} />
+            <hr style={{ width: '100%', margin: '5px 0px' }} />
             <Grid width="auto" margin="10px 0px">
               <Text color="black">{props.modifiedAt}</Text>
             </Grid>
@@ -167,28 +172,32 @@ const Main = (props) => {
             </Text>
             <div
               style={{
-                margin: "20px 0px 0px 0px",
-                overflow: "auto",
-                borderRadius: "5px",
-                background: "#fff",
-                padding: "5px",
+                margin: '20px 0px 0px 0px',
+                height: '25vh',
+                overflow: 'auto',
+                borderRadius: '5px',
+                background: '#fff',
+                padding: '5px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
               {search_loading && (
                 <OpengraphReactComponent
                   site={props.url}
-                  appId={"1aba8b2f-e731-40c6-b6fc-015032e76ed7	"}
-                  loader={"loading"}
-                  size={"small"}
+                  appId={'1aba8b2f-e731-40c6-b6fc-015032e76ed7	'}
+                  loader={<CircularProgress />}
+                  size={'small'}
                 />
               )}
             </div>
           </Grid>
           <Grid padding="0px 16px">
             <CommentWrite {...props}></CommentWrite>
-            <hr style={{ width: "100%", margin: "5px 0px" }} />
+            <hr style={{ width: '100%', margin: '5px 0px' }} />
             {props.commentList.length === 0
-              ? ""
+              ? ''
               : props.commentList.map((el, i) => {
                   return (
                     <CommentList
@@ -196,32 +205,32 @@ const Main = (props) => {
                       key={i}
                       {...el}
                     ></CommentList>
-                  );
+                  )
                 })}
           </Grid>
         </Grid>
       )}
     </React.Fragment>
-  );
-};
+  )
+}
 
 Main.defaultProps = {
-  email: "",
-  interest: "",
-  content: "",
-  modifiedAt: "",
-  url: "",
-  user_image: "https://t1.daumcdn.net/cfile/tistory/2513B53E55DB206927",
-};
+  email: '',
+  interest: '',
+  content: '',
+  modifiedAt: '',
+  url: '',
+  user_image: 'https://t1.daumcdn.net/cfile/tistory/2513B53E55DB206927',
+}
 
 const ImageCircle = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 40px;
-  background-image: url("${(props) => props.src}");
+  background-image: url('${(props) => props.src}');
   background-size: cover;
   margin: 4px;
-`;
+`
 const EditCircle = styled.button`
   font-weight: 900;
   width: 50px;
@@ -231,7 +240,7 @@ const EditCircle = styled.button`
   margin: 4px;
   color: blue;
   background: #fff;
-`;
+`
 
 const DeleteCircle = styled.button`
   font-weight: 900;
@@ -242,6 +251,6 @@ const DeleteCircle = styled.button`
   margin: 4px;
   color: red;
   background: #fff;
-`;
+`
 
-export default Main;
+export default Main
