@@ -64,14 +64,28 @@ const Main = (props) => {
             <Text color="black" bold size="36px">
               {props.content}
             </Text>
-            {search_loading && (
-              <OpengraphReactComponent
-                site={props.url}
-                appId={'1aba8b2f-e731-40c6-b6fc-015032e76ed7	'}
-                loader={<CircularProgress />}
-                size={'large'}
-              />
-            )}
+            <div
+              style={{
+                margin: '20px 0px 0px 0px',
+                height: '25vh',
+                overflow: 'auto',
+                borderRadius: '5px',
+                background: '#fff',
+                padding: '5px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              {search_loading && (
+                <OpengraphReactComponent
+                  site={props.url}
+                  appId={'1aba8b2f-e731-40c6-b6fc-015032e76ed7	'}
+                  loader={<CircularProgress />}
+                  size={'small'}
+                />
+              )}
+            </div>
             <hr style={{ width: '100%', margin: '5px 0px' }} />
             {props.commentList.length === 0
               ? ''
@@ -156,14 +170,28 @@ const Main = (props) => {
             <Text color="black" bold size="36px">
               {props.content}
             </Text>
-            {search_loading && (
-              <OpengraphReactComponent
-                site={props.url}
-                appId={'1aba8b2f-e731-40c6-b6fc-015032e76ed7	'}
-                loader={<CircularProgress />}
-                size={'small'}
-              />
-            )}
+            <div
+              style={{
+                margin: '20px 0px 0px 0px',
+                height: '25vh',
+                overflow: 'auto',
+                borderRadius: '5px',
+                background: '#fff',
+                padding: '5px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              {search_loading && (
+                <OpengraphReactComponent
+                  site={props.url}
+                  appId={'1aba8b2f-e731-40c6-b6fc-015032e76ed7	'}
+                  loader={<CircularProgress />}
+                  size={'small'}
+                />
+              )}
+            </div>
           </Grid>
           <Grid padding="0px 16px">
             <CommentWrite {...props}></CommentWrite>

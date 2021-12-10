@@ -62,6 +62,7 @@ const SignIn = (props) => {
             <Grid margin="10px 0px 0px 0px">
               <Text>Password</Text>
               <InputBox
+                type="password"
                 placeholder="패스워드를 입력해주세요!"
                 {...register('password')}
               />

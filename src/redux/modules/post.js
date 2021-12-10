@@ -186,7 +186,7 @@ export default handleActions(
       }),
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.push(action.payload.content)
+        draft.list.unshift(action.payload.content)
       }),
     [LOADING]: (state, action) =>
       produce(state, (draft) => {

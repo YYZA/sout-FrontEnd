@@ -53,7 +53,17 @@ const UserProfile = (props) => {
   })
 
   return (
-    <>
+    <Grid
+      border="1px solid"
+      bg="#fff"
+      radius="5px"
+      height="100%"
+      max_width="50vw"
+      margin="5vw auto 5vw auto"
+      min_height="50%"
+      min_width="360px"
+      padding="30px 0px"
+    >
       <Grid flex padding="16px" margin="20px 0px 0px 0px">
         <Text fontSize="36px" bold>
           Profile
@@ -104,7 +114,7 @@ const UserProfile = (props) => {
           </Button>
         </Grid>
       </Grid>
-    </>
+    </Grid>
   )
 }
 
