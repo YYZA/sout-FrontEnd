@@ -14,6 +14,7 @@ const SET_NEW_POST = 'SET_NEW_POST'
 const SEARCH_NEXT = 'SEARCH_NEXT'
 const ADD_COMMENT = 'ADD_COMMENT'
 const DELETE_COMMENT = 'DELETE_COMMENT'
+const SEARCH_LOADING = 'SEARCH_LOADING'
 
 const setPost = createAction(SET_POST, (post) => ({
   post,
@@ -29,6 +30,10 @@ const deleteComment = createAction(DELETE_COMMENT, (commentId, postId) => ({
   postId,
 }))
 const loading = createAction(LOADING, (is_loading) => ({ is_loading }))
+const searchLoading = createAction(SEARCH_LOADING, (search_loading) => ({
+  search_loading,
+}))
+
 const editPost = createAction(EDIT_POST, (post_id, content, url) => ({
   content,
   url,
@@ -44,6 +49,7 @@ const searchNext = createAction(SEARCH_NEXT, (search_next) => ({
 const initialState = {
   list: [],
   is_loading: false,
+  search_loading: true,
   page: 0,
   searchPage: 0,
   is_next: undefined,
@@ -186,6 +192,11 @@ export default handleActions(
       produce(state, (draft) => {
         draft.is_loading = action.payload.is_loading
       }),
+    [SEARCH_LOADING]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(action)
+        draft.search_loading = action.payload.search_loading
+      }),
     [IS_NEXT]: (state, action) =>
       produce(state, (draft) => {
         draft.is_next = action.payload.is_next
@@ -229,6 +240,8 @@ const actionCreators = {
   deletePostDB,
   addComment,
   deleteComment,
+  loading,
+  searchLoading,
 }
 
 export { actionCreators }
