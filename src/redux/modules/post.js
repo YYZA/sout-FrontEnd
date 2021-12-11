@@ -194,7 +194,6 @@ export default handleActions(
       }),
     [SEARCH_LOADING]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action)
         draft.search_loading = action.payload.search_loading
       }),
     [IS_NEXT]: (state, action) =>

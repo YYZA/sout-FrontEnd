@@ -23,7 +23,7 @@ const Main = (props) => {
     if (search_loading === false) {
       setTimeout(() => {
         dispatch(postActions.searchLoading(true))
-      }, 100)
+      }, 1000)
     }
   })
 
