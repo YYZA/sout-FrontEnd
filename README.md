@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+# sout
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+개발자 정보 커뮤니티! 개발자들의 살롱을 꿈꿉니다!
+<br />
 
-## Available Scripts
+# 제작 기간 & 팀원 소개
 
-In the project directory, you can run:
+- 2021년 11월 6일 ~ 11일, 총 작업기간 5일
+- 5인 1조 팀 프로젝트
+  - 프론트엔드 : https://github.com/mtae616/sout-FrontEnd
+    - 강태수 : https://github.com/mtae616
+    - 김용성 : https://github.com/YYZA
+  - 백엔드 : https://github.com/SeongeunYang/sout-BackEnd
+    - 양성은 : https://github.com/SeongeunYang
+    - 고성범 : https://github.com/SeongBeomKo
+    - 성해인 : https://github.com/sixthh-sense
+<br />
 
-### `yarn start`
+# 사용 기술
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- react
+- redux
+- redux-thunk
+- react-router-dom
+- material-ui
+- axios
+- connected-react-router
+- immer
+- lodash
+- opengraph-react
+- react-hook-form
+- react-query
+- styled-component
+<br />
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# 핵심 기능
 
-### `yarn test`
+- 로그인, 회원가입
+  - jwt를 이용하여 로그인과 회원가입을 구현하였습니다.
+  - 회원가입을 할 때에는 react-hook-form을 사용하여 양식에 맞는 유효성 검사를 구현하였습니다.
+  - 카카오 소셜 로그인을 구현하였습니다.
+  
+- 게시글, 댓글 CRUD
+  - 각 게시글과 댓글에 CRUD를 할 수 있습니다.
+  - 유저정보를 Update 할 수 있습니다.
+  - 유저정보를 update 할 때에는 react-query를 이용하여 변화를 감지할 때마다 자동으로 데이터를 fetch할 수 있게 하였습니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+- 검색 기능
+  - 원하는 게시글을 검색을 통하여 LOAD 할 수 있습니다.
+  - 검색 게시글을 LOAD할 때에는, 페이지 이동을 하지 않고 메인화면에 바로 볼 수 있게 구현하였습니다.
+  - 검색을 할 때에는 debounce 를 통하여 리렌더링을 최소화하였습니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 무한스크롤 구현
+  - 게시글을 3개 단위로 LOAD 할 수 있는 무한스크롤을 구현하였습니다.
+  - 무한스크롤은 검색에도 마찬가지로 적용하였습니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+- OG tag 게시글에 삽입
+  - opengraph-react 라이브러리를 사용하여 각 게시글에는 해당하는 OG tag를 삽입하였습니다.
+<br />
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# 와이어 프레임
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- <a href="https://diddl.tistory.com/102">블로그</a>
+<br />
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# 웹사이트 링크
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- http://hanghae99-sout.s3-website.ap-northeast-2.amazonaws.com
+<br />
 
-## Learn More
+# 유튜브 링크
+- 업로드 예정
+<br />
+# 우리 팀이 해결한 문제
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- axios를 통한 데이터관리 (김용성)
+  - axios를 처음 사용해봐 데이터를 어떻게 쓰는지, axios에서 어떻게 fetch하는지, 백엔드 팀원들이 작성한 API명세를 어떻게 사용하는 것이 도전과제였습니다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 카카오 소셜로그인 관련 (강태수)
+  - 카카오 소셜로그인을 하면서 jwt 토큰을 cookie에 저장하는데, 간혹 cookie에 저장이 되지 않는 현상이 발생하였습니다. (네트워크 관련) 하여 session에 저장한 뒤 session이 감지되면, cookie를 새로 발급하는 방식으로 문제를 해결하였고, 이 때 발생할 수 있는 로그인 관련 사항들을 메인페이지에서 다시 한 번 서버와 통신하여 jwt 토큰이 유효한지 검증할 수 있게 하였습니다.
+- 검색 기능 (강태수)
+  - 검색하여 load 되는 게시글들을 메인페이지에 표출되는 게시글의 컴포넌트와 공유하여 관리하고 싶은 관계로 redux에서 검색한 keyword가 있는지 판별하여 검색을 통한 게시물 load인지 메인페이지에서 전부 불러오는 게시글인지 분기하여 주어 해당하는 게시글들을 fetch 하였습니다.
+  - opengraph-react 를 OG tag를 불러오는 라이브러리로 사용하였는데, 검색을 했을 때 게시글의 url이 바뀌어도 감지하지 못하는 일이 발생하였습니다. 검색해서 데이터를 fetch할 때에는 false라는 값을 갖는 변수를 redux에 지정해주었고 이것을 통해 렌더링이 되지 않게 지정한 이후, 이 변수가 OG tag 가 마운트 될 때에는 true가 되어 렌더링할 수 있게 하였습니다. 다만 이 떄 렌더링보다 true, false를 지정하는 dispatch가 먼저 일어나기 때문에 setTimeout을 통해 관리하였습니다.
+  
