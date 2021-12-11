@@ -72,7 +72,7 @@
 <br />
 
 # 유튜브 링크
-- 업로드 예정
+- https://www.youtube.com/watch?v=Ltmke9IyPXo
 <br />
 
 # 우리 팀이 해결한 문제
