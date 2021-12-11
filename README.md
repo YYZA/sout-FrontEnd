@@ -73,6 +73,8 @@
 
 # 유튜브 링크
 - https://www.youtube.com/watch?v=Ltmke9IyPXo
+![SOUT 섬네일](https://user-images.githubusercontent.com/92071754/145670088-43c25c1b-0ce1-49b5-8621-ca7a5d395773.png)
+
 <br />
 
 # 우리 팀이 해결한 문제
