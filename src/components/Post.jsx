@@ -18,9 +18,12 @@ const Main = (props) => {
   const is_login = useSelector((state) => state.user.is_login)
   const search_loading = useSelector((state) => state.post.search_loading)
   const dispatch = useDispatch()
+
   useEffect(() => {
     if (search_loading === false) {
-      dispatch(postActions.searchLoading(true))
+      setTimeout(() => {
+        dispatch(postActions.searchLoading(true))
+      }, 1000)
     }
   })
 

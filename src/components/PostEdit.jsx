@@ -1,20 +1,18 @@
-import React from "react";
-import { Input, Button, Grid } from "../elements/index";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators } from "../redux/modules/post";
-import { history } from "../redux/configureStore";
-import styled from "styled-components";
+import React from 'react'
+import { Input, Button, Grid } from '../elements/index'
+import { useDispatch, useSelector } from 'react-redux'
+import { actionCreators } from '../redux/modules/post'
+import { history } from '../redux/configureStore'
+import styled from 'styled-components'
 
 const PostEdit = (props) => {
-  const [content, setContent] = React.useState("");
-  const [url, setUrl] = React.useState(props.location.state.state.url);
+  const [content, setContent] = React.useState('')
+  const [url, setUrl] = React.useState(props.location.state.state.url)
   const [content_ex, setContentEx] = React.useState(
     props.location.state.state.content
-  );
-  const dispatch = useDispatch();
-  let post_id = props.location.state.state.postId;
-
-  console.log(content_ex);
+  )
+  const dispatch = useDispatch()
+  let post_id = props.location.state.state.postId
 
   return (
     <React.Fragment>
@@ -31,7 +29,7 @@ const PostEdit = (props) => {
       >
         <TextBox
           onChange={(e) => {
-            setContentEx(e.target.value);
+            setContentEx(e.target.value)
           }}
           rows={20}
           multiLine
@@ -40,15 +38,15 @@ const PostEdit = (props) => {
         ></TextBox>
         <InputBox
           onChange={(e) => {
-            setUrl(e.target.value);
+            setUrl(e.target.value)
           }}
           label="업로드 링크"
           value={url}
         ></InputBox>
         <Button
           _onClick={() => {
-            history.replace("/");
-            dispatch(actionCreators.editPostDB(content_ex, url, post_id));
+            history.replace('/')
+            dispatch(actionCreators.editPostDB(content_ex, url, post_id))
           }}
           color="#262223"
           bg="#ddc6b6"
@@ -59,8 +57,8 @@ const PostEdit = (props) => {
         </Button>
       </Grid>
     </React.Fragment>
-  );
-};
+  )
+}
 
 const TextBox = styled.textarea`
   border-radius: 5px;
@@ -69,7 +67,7 @@ const TextBox = styled.textarea`
   width: 100%;
   padding: 16px 10px;
   box-sizing: border-box;
-`;
+`
 const InputBox = styled.input`
   border-radius: 5px;
   margin: 10px 0px;
@@ -77,6 +75,6 @@ const InputBox = styled.input`
   width: 100%;
   padding: 16px 10px;
   box-sizing: border-box;
-`;
+`
 
-export default PostEdit;
+export default PostEdit
